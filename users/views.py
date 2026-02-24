@@ -1,66 +1,53 @@
-from django.http import HttpResponse
+# users/views.py
 from django.shortcuts import render, redirect
-from django.contrib.auth import login
+from django.contrib.auth import login, authenticate
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from django.contrib import messages
-from .models import User
 
-
+# Vista de registro de clientes
 def register_view(request):
-    if request.method == 'POST':
+    if request.method == "POST":
+        company_code = request.POST.get('company_code')
         username = request.POST.get('username')
-        first_name = request.POST.get('first_name')
         email = request.POST.get('email')
         phone = request.POST.get('phone')
         password1 = request.POST.get('password1')
         password2 = request.POST.get('password2')
 
         if password1 != password2:
-            messages.error(request, "Las contraseñas no coinciden")
-            return redirect('register')
-
-        if User.objects.filter(username=username).exists():
-            messages.error(request, "El usuario ya existe")
-            return redirect('register')
-
-        user = User.objects.create_user(
-            username=username,
-            first_name=first_name,
-            email=email,
-            phone=phone,
-            password=password1,
-            role='CLIENTE'
-        )
-
-        login(request, user)
-        return redirect('dashboard_redirect')
+            messages.error(request, "Las contraseñas no coinciden.")
+        elif User.objects.filter(username=username).exists():
+            messages.error(request, "El nombre de usuario ya existe.")
+        else:
+            user = User.objects.create_user(username=username, email=email, password=password1)
+            # Si quieres, puedes guardar company_code o phone en un perfil extendido
+            messages.success(request, "Cuenta creada exitosamente. Inicia sesión.")
+            return redirect('login')
 
     return render(request, 'register.html')
 
 
+# Redirección del dashboard según tipo de usuario
+@login_required
 def dashboard_redirect(request):
-    if request.user.role in ['SUPERADMIN', 'ADMIN']:
-        return redirect('admin_dashboard')
-    elif request.user.role == 'SUPERVISOR':
-        return redirect('supervisor_dashboard')
-    elif request.user.role == 'CONDUCTOR':
-        return redirect('driver_dashboard')
-    elif request.user.role == 'CLIENTE':
-        return redirect('client_dashboard')
-    else:
-        return redirect('login')
+    # Por simplicidad, todos van al admin_dashboard (ajustar según tu modelo de roles)
+    return redirect('admin_dashboard')
 
 
+# Dashboards
+@login_required
 def admin_dashboard(request):
-    return HttpResponse("Panel Administrador")
+    return render(request, 'admin_dashboard.html')
 
-
+@login_required
 def supervisor_dashboard(request):
-    return HttpResponse("Panel Supervisor")
+    return render(request, 'dashboard_base.html')  # plantilla temporal
 
-
+@login_required
 def driver_dashboard(request):
-    return HttpResponse("Panel Conductor")
+    return render(request, 'dashboard_base.html')  # plantilla temporal
 
-
+@login_required
 def client_dashboard(request):
-    return HttpResponse("Panel Cliente")
+    return render(request, 'dashboard_base.html')  # plantilla temporal

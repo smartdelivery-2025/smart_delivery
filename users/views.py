@@ -2,8 +2,10 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import User
+from .models import User
 from django.contrib import messages
+from django.http import HttpResponse
+
 
 # Vista de registro de clientes
 def register_view(request):
@@ -17,37 +19,71 @@ def register_view(request):
 
         if password1 != password2:
             messages.error(request, "Las contraseñas no coinciden.")
-        elif User.objects.filter(username=username).exists():
-            messages.error(request, "El nombre de usuario ya existe.")
-        else:
-            user = User.objects.create_user(username=username, email=email, password=password1)
-            # Si quieres, puedes guardar company_code o phone en un perfil extendido
-            messages.success(request, "Cuenta creada exitosamente. Inicia sesión.")
-            return redirect('login')
+            return redirect('register')
+
+        if User.objects.filter(username=username).exists():
+            messages.error(request, "El usuario ya existe.")
+            return redirect('register')
+
+        # 🔥 BUSCAR EMPRESA POR CÓDIGO
+        from companies.models import Company
+        company = Company.objects.filter(code=company_code).first()
+
+        if not company:
+            messages.error(request, "Código de empresa inválido.")
+            return redirect('register')
+
+        user = User.objects.create_user(
+            username=username,
+            email=email,
+            password=password1,
+            phone=phone,
+            role='CLIENTE',
+            company=company
+        )
+
+        messages.success(request, "Cuenta creada correctamente")
+        return redirect('login')
 
     return render(request, 'register.html')
 
 
-# Redirección del dashboard según tipo de usuario
-@login_required
-def dashboard_redirect(request):
-    # Por simplicidad, todos van al admin_dashboard (ajustar según tu modelo de roles)
-    return redirect('admin_dashboard')
 
 
 # Dashboards
 @login_required
 def admin_dashboard(request):
-    return render(request, 'admin_dashboard.html')
+    return render(request, 'dashboard_content.html')
 
 @login_required
-def supervisor_dashboard(request):
-    return render(request, 'dashboard_base.html')  # plantilla temporal
+def panel(request):
+    return render(request, 'dashboard_base.html')
 
 @login_required
-def driver_dashboard(request):
-    return render(request, 'dashboard_base.html')  # plantilla temporal
+def empresas(request):
+    return HttpResponse("<h2>Empresas</h2>")
 
 @login_required
-def client_dashboard(request):
-    return render(request, 'dashboard_base.html')  # plantilla temporal
+def usuarios(request):
+    return HttpResponse("<h2>Usuarios</h2>")
+
+@login_required
+def pedidos(request):
+    return HttpResponse("<h2>Pedidos</h2>")
+
+@login_required
+def conductores(request):
+    return HttpResponse("<h2>Conductores</h2>")
+
+@login_required
+def rutas(request):
+    return HttpResponse("<h2>Rutas</h2>")
+
+@login_required
+def inventario(request):
+    return HttpResponse("<h2>Inventario</h2>")
+
+@login_required
+def incidencias(request):
+    return HttpResponse("<h2>Incidencias</h2>")
+

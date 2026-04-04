@@ -1,60 +1,157 @@
-{% extends "base.html" %}
-
-{% block title %}Crear Cuenta{% endblock %}
-{% block body_class %}auth-body{% endblock %}
+{% extends 'base.html' %}
 
 {% block content %}
-<div class="auth-card">
 
-    <div class="logo-icon">🚚</div>
+<style>
 
-    <h1>Crear Cuenta</h1>
-    <div class="subtitle">Únete a Smart Delivery</div>
 
-    <form method="POST">
-        {% csrf_token %}
+.cards{
+    display:grid;
+    grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
+    gap:20px;
+}
 
-        <div class="form-group">
-            <label>Código de Empresa</label>
-            <input type="text" name="company_code">
-        </div>
+.card{
+    background:rgba(255,255,255,0.1);
+    padding:20px;
+    border-radius:15px;
+}
 
-        <div class="form-group">
-            <label>Nombre Completo</label>
-            <input type="text" name="username">
-        </div>
+.number{
+    font-size:28px;
+    font-weight:bold;
+}
 
-        <div class="form-group">
-            <label>Correo Electrónico</label>
-            <input type="email" name="email">
-        </div>
+.panel{
+    margin-top:30px;
+    background:rgba(255,255,255,0.1);
+    padding:20px;
+    border-radius:15px;
+}
 
-        <div class="form-group">
-            <label>Teléfono</label>
-            <input type="text" name="phone">
-        </div>
+.grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+}
 
-        <div class="form-group">
-            <label>Contraseña</label>
-            <input type="password" name="password1">
-        </div>
+.box{
+    padding:20px;
+    border-radius:10px;
+    background:rgba(255,255,255,0.1);
+}
 
-        <div class="form-group">
-            <label>Confirmar Contraseña</label>
-            <input type="password" name="password2">
-        </div>
+.success{ background:rgba(0,255,150,0.2); }
+.danger{ background:rgba(255,80,80,0.2); }
 
-        <button class="btn-primary" type="submit">Crear cuenta</button>
-    </form>
+.charts{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+    margin-top:30px;
+}
 
-    <div class="link-text">
-        ¿Ya tienes cuenta? <a href="{% url 'login' %}">Inicia sesión</a>
-    </div>
+.chart-box{
+    background:rgba(255,255,255,0.1);
+    padding:20px;
+    border-radius:15px;
+}
 
-    <div class="note">
-        Solo clientes pueden registrarse.<br>
-        Los conductores son creados por el administrador.
-    </div>
+.kpi{
+    background:rgba(255,255,255,0.2);
+    padding:10px;
+    border-radius:10px;
+    margin:10px 0;
+}
 
+table{
+    width:100%;
+    margin-top:20px;
+    border-collapse:collapse;
+}
+
+td, th{
+    padding:10px;
+}
+
+body{
+    min-height:100vh;
+    background: linear-gradient(135deg,#1e3c72,#2a5298,#3b82f6);
+    color:white;
+}
+
+.topbar{
+    display:flex;
+    justify-content:space-between;
+    padding:20px 40px;
+    background:linear-gradient(90deg,#3b3f9c,#7b2ff7);
+}
+
+.menu{
+    display:flex;
+    gap:10px;
+    padding:20px 40px;
+}
+
+.menu a{
+    padding:10px 20px;
+    border-radius:20px;
+    background:rgba(255,255,255,0.1);
+    cursor:pointer;
+}
+
+.menu a:hover{
+    background:linear-gradient(135deg,#7b2ff7,#00c6ff);
+}
+
+#content-area{
+    padding:30px;
+}
+</style>
+
+<div class="topbar">
+    🚚 Smart Delivery
+    <a href="{% url 'logout' %}" class="btn-primary">Cerrar sesión</a>
 </div>
+
+<div class="menu">
+    <a onclick="loadSection('dashboard')">Dashboard</a>
+    <a onclick="loadSection('empresas')">Empresas</a>
+    <a onclick="loadSection('usuarios')">Usuarios</a>
+    <a onclick="loadSection('pedidos')">Pedidos</a>
+    <a onclick="loadSection('conductores')">Conductores</a>
+    <a onclick="loadSection('rutas')">Rutas</a>
+    <a onclick="loadSection('inventario')">Inventario</a>
+    <a onclick="loadSection('incidencias')">Incidencias</a>
+</div>
+
+<div id="content-area">
+    {% block content_area %}
+    Cargando...
+    {% endblock %}
+</div>
+
+<!-- 🔥 CHART.JS -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+function loadSection(section){
+    fetch(`/panel/${section}/`)
+    .then(res=>res.text())
+    .then(html=>{
+        const content = document.getElementById('content-area');
+        content.innerHTML = html;
+
+        // 🔥 Ejecutar scripts dentro del HTML cargado
+        content.querySelectorAll("script").forEach(oldScript => {
+            const newScript = document.createElement("script");
+            newScript.textContent = oldScript.textContent;
+            document.body.appendChild(newScript);
+        });
+    });
+}
+
+window.onload = () => loadSection('dashboard');
+</script>
+
 {% endblock %}

@@ -1,18 +1,11 @@
 from django.urls import path
 from django.contrib.auth import views as auth_views
-from .views import (
-    register_view,
-    dashboard_redirect,
-    admin_dashboard,
-    supervisor_dashboard,
-    driver_dashboard,
-    client_dashboard
-)
+from .views import register_view, admin_dashboard
+from . import views
 
 urlpatterns = [
     path('', auth_views.LoginView.as_view(
-        template_name='login.html',
-        next_page='dashboard_redirect'
+        template_name='login.html'
     ), name='login'),
 
     path('register/', register_view, name='register'),
@@ -21,10 +14,13 @@ urlpatterns = [
         next_page='login'
     ), name='logout'),
 
-    path('dashboard-redirect/', dashboard_redirect, name='dashboard_redirect'),
-
-    path('admin-dashboard/', admin_dashboard, name='admin_dashboard'),
-    path('supervisor-dashboard/', supervisor_dashboard, name='supervisor_dashboard'),
-    path('driver-dashboard/', driver_dashboard, name='driver_dashboard'),
-    path('client-dashboard/', client_dashboard, name='client_dashboard'),
+    path('panel/dashboard/', admin_dashboard, name='admin_dashboard'),
+    path('panel/', views.panel, name='panel'),
+    path('panel/empresas/', views.empresas, name='empresas'),
+    path('panel/usuarios/', views.usuarios, name='usuarios'),
+    path('panel/pedidos/', views.pedidos, name='pedidos'),
+    path('panel/conductores/', views.conductores, name='conductores'),
+    path('panel/rutas/', views.rutas, name='rutas'),
+    path('panel/inventario/', views.inventario, name='inventario'),
+    path('panel/incidencias/', views.incidencias, name='incidencias'),
 ]

@@ -1,0 +1,146 @@
+
+
+<h2 style="margin-bottom:20px;">Panel de Administrador</h2>
+
+<!-- 🔹 CARDS SUPERIORES -->
+<div class="cards">
+    <div class="card">
+        <h4>Total Pedidos</h4>
+        <p class="number">7</p>
+        <span>2 pendientes</span>
+    </div>
+
+    <div class="card">
+        <h4>En Tránsito</h4>
+        <p class="number">0</p>
+        <span>0 rutas activas</span>
+    </div>
+
+    <div class="card">
+        <h4>Incidencias</h4>
+        <p class="number">0</p>
+        <span>Reportes abiertos</span>
+    </div>
+
+    <div class="card">
+        <h4>Stock Bajo</h4>
+        <p class="number">0</p>
+        <span>Artículos críticos</span>
+    </div>
+</div>
+
+<!-- 🔹 MÁS / MENOS VENDIDO -->
+<div class="panel">
+    <h3>📦 Producto más vendido</h3>
+
+    <div class="grid">
+        <div class="box success">
+            <h4>Más Vendido</h4>
+            <p>Envío Express Nacional</p>
+            <p><b>Cantidad:</b> 1</p>
+            <p><b>Ingresos:</b> $150</p>
+        </div>
+
+        <div class="box danger">
+            <h4>Menos Vendido</h4>
+            <p>Envío Express Nacional</p>
+            <p><b>Cantidad:</b> 1</p>
+            <p><b>Ingresos:</b> $150</p>
+        </div>
+    </div>
+</div>
+
+<!-- 🔹 GRÁFICAS -->
+<div class="charts">
+
+    <div class="chart-box">
+        <h4>Distribución de Pedidos</h4>
+        <canvas id="pieChart"></canvas>
+    </div>
+
+    <div class="chart-box">
+        <h4>Desempeño Mensual</h4>
+        <canvas id="barChart"></canvas>
+    </div>
+
+    <div class="chart-box">
+        <h4>Eficiencia de Rutas</h4>
+        <canvas id="lineChart"></canvas>
+    </div>
+
+    <div class="chart-box">
+        <h4>Indicadores (KPIs)</h4>
+
+        <div class="kpi">✔ Cumplimiento: 14.3%</div>
+        <div class="kpi">⭐ Calificación: N/A</div>
+        <div class="kpi">📅 Rutas activas: 0</div>
+        <div class="kpi">📦 Stock bajo: 0</div>
+
+    </div>
+
+</div>
+
+<!-- 🔹 FIRMAS -->
+<div class="panel">
+    <h3>📄 Firmas Digitales</h3>
+
+    <div class="grid">
+        <div class="box success">Firmadas: 1</div>
+        <div class="box danger">Sin firma: 0</div>
+        <div class="box">Total: 1</div>
+        <div class="box">Tasa: 100%</div>
+    </div>
+
+    <table>
+        <tr>
+            <th>Pedido</th>
+            <th>Destinatario</th>
+            <th>Fecha</th>
+        </tr>
+        <tr>
+            <td>order_123</td>
+            <td>karolina</td>
+            <td>20 Feb 2026</td>
+        </tr>
+    </table>
+</div>
+
+
+
+<script>
+// Pie
+new Chart(document.getElementById('pieChart'), {
+    type: 'pie',
+    data: {
+        labels: ['Pendientes', 'Completados'],
+        datasets: [{
+            data: [67, 33]
+        }]
+    }
+});
+
+// Bar
+new Chart(document.getElementById('barChart'), {
+    type: 'bar',
+    data: {
+        labels: ['Ene','Feb','Mar','Abr','May'],
+        datasets: [{
+            label: 'Pedidos',
+            data: [40,50,60,45,70]
+        }]
+    }
+});
+
+// Line
+new Chart(document.getElementById('lineChart'), {
+    type: 'line',
+    data: {
+        labels: ['Lun','Mar','Mie','Jue','Vie','Sab','Dom'],
+        datasets: [{
+            label: 'Eficiencia',
+            data: [95,90,98,92,89,97,99]
+        }]
+    }
+});
+</script>
+

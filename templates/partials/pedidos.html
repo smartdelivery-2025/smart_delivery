@@ -1,0 +1,43 @@
+<h2>Gestión de Pedidos</h2>
+
+<table class="table">
+    <tr>
+        <th>ID</th>
+        <th>Destinatario</th>
+        <th>Dirección</th>
+        <th>Estado</th>
+    </tr>
+
+    <tr>
+        <td>order_001</td>
+        <td>karolina</td>
+        <td>Calle 22 #15</td>
+        <td><span class="badge success">Completado</span></td>
+    </tr>
+
+    <tr>
+        <td>order_002</td>
+        <td>juan</td>
+        <td>Calle 10</td>
+        <td><span class="badge warning">Pendiente</span></td>
+    </tr>
+</table>
+
+<style>
+.table{
+    width:100%;
+    margin-top:20px;
+    border-collapse:collapse;
+}
+.table th, .table td{
+    padding:12px;
+    border-bottom:1px solid rgba(255,255,255,0.2);
+}
+
+.badge{
+    padding:5px 10px;
+    border-radius:10px;
+}
+.success{ background:green; }
+.warning{ background:orange; }
+</style>

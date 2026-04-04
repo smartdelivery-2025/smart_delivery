@@ -8,6 +8,7 @@ from django.http import HttpResponse
 from companies.models import Company
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth import logout
 
 
 # Vista de registro de clientes
@@ -51,6 +52,25 @@ def register_view(request):
     return render(request, 'register.html')
 
 
+#login
+def login_view(request):
+    if request.method == "POST":
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        user = authenticate(request, username=username, password=password)
+
+        if user is not None:
+            login(request, user)
+            return redirect('panel')  # 🔥 AQUÍ ESTÁ LA CLAVE
+        else:
+            messages.error(request, "Credenciales incorrectas")
+
+    return render(request, 'login.html')
+
+
+
+
 
 
 # Dashboards
@@ -70,6 +90,13 @@ def empresas(request):
         'empresas': empresas
     })
 
+@login_required
+def usuarios(request):
+    users = User.objects.all()
+
+    return render(request, 'usuarios/usuarios_content.html', {
+        'users': users
+    })
 
 @csrf_exempt
 def eliminar_empresa(request, id):
@@ -77,9 +104,6 @@ def eliminar_empresa(request, id):
         Company.objects.filter(id=id).delete()
         return JsonResponse({'success': True})
 
-@login_required
-def usuarios(request):
-    return HttpResponse("<h2>Usuarios</h2>")
 
 @login_required
 def pedidos(request):
@@ -101,3 +125,6 @@ def inventario(request):
 def incidencias(request):
     return HttpResponse("<h2>Incidencias</h2>")
 
+def logout_view(request):
+    logout(request)
+    return redirect('login')

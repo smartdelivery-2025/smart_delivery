@@ -3,166 +3,204 @@
 {% block content %}
 
 <style>
+    .cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+    }
 
+    .card {
+        background: rgba(255, 255, 255, 0.1);
+        padding: 20px;
+        border-radius: 15px;
+    }
 
-.cards{
-    display:grid;
-    grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
-    gap:20px;
-}
+    .number {
+        font-size: 28px;
+        font-weight: bold;
+    }
 
-.card{
-    background:rgba(255,255,255,0.1);
-    padding:20px;
-    border-radius:15px;
-}
+    .panel {
+        margin-top: 30px;
+        background: rgba(255, 255, 255, 0.1);
+        padding: 20px;
+        border-radius: 15px;
+    }
 
-.number{
-    font-size:28px;
-    font-weight:bold;
-}
+    .grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+    }
 
-.panel{
-    margin-top:30px;
-    background:rgba(255,255,255,0.1);
-    padding:20px;
-    border-radius:15px;
-}
+    .box {
+        padding: 20px;
+        border-radius: 10px;
+        background: rgba(255, 255, 255, 0.1);
+    }
 
-.grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:20px;
-}
+    .success {
+        background: rgba(0, 255, 150, 0.2);
+    }
 
-.box{
-    padding:20px;
-    border-radius:10px;
-    background:rgba(255,255,255,0.1);
-}
+    .danger {
+        background: rgba(255, 80, 80, 0.2);
+    }
 
-.success{ background:rgba(0,255,150,0.2); }
-.danger{ background:rgba(255,80,80,0.2); }
+    .charts {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        margin-top: 30px;
+    }
 
-.charts{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:20px;
-    margin-top:30px;
-}
+    .chart-box {
+        background: rgba(255, 255, 255, 0.1);
+        padding: 20px;
+        border-radius: 15px;
+    }
 
-.chart-box{
-    background:rgba(255,255,255,0.1);
-    padding:20px;
-    border-radius:15px;
-}
+    .kpi {
+        background: rgba(255, 255, 255, 0.2);
+        padding: 10px;
+        border-radius: 10px;
+        margin: 10px 0;
+    }
 
-.kpi{
-    background:rgba(255,255,255,0.2);
-    padding:10px;
-    border-radius:10px;
-    margin:10px 0;
-}
+    table {
+        width: 100%;
+        margin-top: 20px;
+        border-collapse: collapse;
+    }
 
-table{
-    width:100%;
-    margin-top:20px;
-    border-collapse:collapse;
-}
+    td,
+    th {
+        padding: 10px;
+    }
 
-td, th{
-    padding:10px;
-}
+    body {
+        min-height: 100vh;
+        background: linear-gradient(135deg, #1e3c72, #2a5298, #3b82f6);
+        color: white;
+    }
 
-body{
-    min-height:100vh;
-    background: linear-gradient(135deg,#1e3c72,#2a5298,#3b82f6);
-    color:white;
-}
+    .topbar {
+        display: flex;
+        justify-content: space-between;
+        padding: 20px 40px;
+        background: linear-gradient(90deg, #3b3f9c, #7b2ff7);
+    }
 
-.topbar{
-    display:flex;
-    justify-content:space-between;
-    padding:20px 40px;
-    background:linear-gradient(90deg,#3b3f9c,#7b2ff7);
-}
+    .menu {
+        display: flex;
+        gap: 10px;
+        padding: 20px 40px;
+    }
 
-.menu{
-    display:flex;
-    gap:10px;
-    padding:20px 40px;
-}
+    .menu a {
+        padding: 10px 20px;
+        border-radius: 20px;
+        background: rgba(255, 255, 255, 0.1);
+        cursor: pointer;
+    }
 
-.menu a{
-    padding:10px 20px;
-    border-radius:20px;
-    background:rgba(255,255,255,0.1);
-    cursor:pointer;
-}
+    .menu a:hover {
+        background: linear-gradient(135deg, #7b2ff7, #00c6ff);
+    }
 
-.menu a:hover{
-    background:linear-gradient(135deg,#7b2ff7,#00c6ff);
-}
+    #content-area {
+        padding: 30px;
+    }
 
-#content-area{
-    padding:30px;
-}
+    .topbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 40px;
+        background: linear-gradient(90deg, #3b3f9c, #7b2ff7, #00c6ff);
+        border-radius: 10px;
+    }
 
-.topbar{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:15px 40px;
-    background:linear-gradient(90deg,#3b3f9c,#7b2ff7,#00c6ff);
-    border-radius:10px;
-}
+    .left {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
 
-.left{
-    display:flex;
-    align-items:center;
-    gap:10px;
-}
+    .left strong {
+        font-size: 18px;
+    }
 
-.left strong{
-    font-size:18px;
-}
+    .left small {
+        opacity: 0.7;
+    }
 
-.left small{
-    opacity:0.7;
-}
+    .right {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+    }
 
-.right{
-    display:flex;
-    align-items:center;
-    gap:20px;
-}
+    .user-info {
+        text-align: right;
+        font-size: 14px;
+    }
 
-.user-info{
-    text-align:right;
-    font-size:14px;
-}
+    .user-info small {
+        opacity: 0.7;
+    }
 
-.user-info small{
-    opacity:0.7;
-}
+    .btn-logout {
+        padding: 8px 15px;
+        border-radius: 20px;
+        background: rgba(255, 255, 255, 0.15);
+        color: white;
+        text-decoration: none;
+        font-size: 14px;
+        transition: 0.3s;
+    }
 
-.btn-logout{
-    padding:8px 15px;
-    border-radius:20px;
-    background:rgba(255,255,255,0.15);
-    color:white;
-    text-decoration:none;
-    font-size:14px;
-    transition:0.3s;
-}
+    .btn-logout:hover {
+        background: linear-gradient(135deg, #7b2ff7, #00c6ff);
+    }
 
-.btn-logout:hover{
-    background:linear-gradient(135deg,#7b2ff7,#00c6ff);
-}
+    .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.6);
+        justify-content: center;
+        align-items: center;
+        z-index: 999;
+    }
+
+    .modal-content {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        padding: 30px;
+        border-radius: 20px;
+        width: 300px;
+    }
+
+    .modal-content input {
+        width: 100%;
+        margin: 10px 0;
+        padding: 10px;
+        border-radius: 10px;
+        border: none;
+    }
+
+    .close {
+        float: right;
+        cursor: pointer;
+    }
 </style>
 
 <div class="topbar">
-    
+
     <div class="left">
         🚚 <div>
             <strong>Smart Delivery</strong><br>
@@ -176,9 +214,12 @@ body{
             <small>Admin</small>
         </div>
 
-        <a href="{% url 'logout' %}" class="btn-logout">
-            ⎋ Cerrar sesión
-        </a>
+        <form method="POST" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <button type="submit" class="btn-logout">
+                ⎋ Cerrar sesión
+            </button>
+        </form>
     </div>
 
 </div>
@@ -204,23 +245,40 @@ body{
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script>
-function loadSection(section){
-    fetch(`/panel/${section}/`)
-    .then(res=>res.text())
-    .then(html=>{
-        const content = document.getElementById('content-area');
-        content.innerHTML = html;
 
-        // 🔥 Ejecutar scripts dentro del HTML cargado
-        content.querySelectorAll("script").forEach(oldScript => {
-            const newScript = document.createElement("script");
-            newScript.textContent = oldScript.textContent;
-            document.body.appendChild(newScript);
-        });
-    });
-}
+    window.openModal = function (type) {
+        const modal = document.getElementById(type + '-modal');
+        if (modal) {
+            modal.style.display = 'flex';
+        } else {
+            console.error('Modal no encontrado:', type);
+        }
+    }
 
-window.onload = () => loadSection('dashboard');
+    window.closeModal = function (type) {
+        const modal = document.getElementById(type + '-modal');
+        if (modal) {
+            modal.style.display = 'none';
+        }
+    }
+
+    function loadSection(section) {
+        fetch(`/panel/${section}/`)
+            .then(res => res.text())
+            .then(html => {
+                const content = document.getElementById('content-area');
+                content.innerHTML = html;
+
+                // Ejecutar scripts del contenido cargado
+                content.querySelectorAll("script").forEach(oldScript => {
+                    const newScript = document.createElement("script");
+                    newScript.textContent = oldScript.textContent;
+                    document.body.appendChild(newScript);
+                });
+            });
+    }
+
+    window.onload = () => loadSection('dashboard');
 </script>
 
 {% endblock %}

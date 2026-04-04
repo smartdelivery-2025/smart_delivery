@@ -5,6 +5,9 @@ from django.contrib.auth.decorators import login_required
 from .models import User
 from django.contrib import messages
 from django.http import HttpResponse
+from companies.models import Company
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
 
 
 # Vista de registro de clientes
@@ -61,7 +64,18 @@ def panel(request):
 
 @login_required
 def empresas(request):
-    return HttpResponse("<h2>Empresas</h2>")
+    empresas = Company.objects.all()
+
+    return render(request, 'empresas/empresas_content.html', {
+        'empresas': empresas
+    })
+
+
+@csrf_exempt
+def eliminar_empresa(request, id):
+    if request.method == "POST":
+        Company.objects.filter(id=id).delete()
+        return JsonResponse({'success': True})
 
 @login_required
 def usuarios(request):

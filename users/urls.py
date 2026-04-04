@@ -17,6 +17,7 @@ urlpatterns = [
     path('panel/dashboard/', admin_dashboard, name='admin_dashboard'),
     path('panel/', views.panel, name='panel'),
     path('panel/empresas/', views.empresas, name='empresas'),
+    path('panel/empresas/eliminar/<int:id>/', views.eliminar_empresa, name='eliminar_empresa'),
     path('panel/usuarios/', views.usuarios, name='usuarios'),
     path('panel/pedidos/', views.pedidos, name='pedidos'),
     path('panel/conductores/', views.conductores, name='conductores'),

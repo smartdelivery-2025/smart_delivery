@@ -107,11 +107,80 @@ body{
 #content-area{
     padding:30px;
 }
+
+.topbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:15px 40px;
+    background:linear-gradient(90deg,#3b3f9c,#7b2ff7,#00c6ff);
+    border-radius:10px;
+}
+
+.left{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.left strong{
+    font-size:18px;
+}
+
+.left small{
+    opacity:0.7;
+}
+
+.right{
+    display:flex;
+    align-items:center;
+    gap:20px;
+}
+
+.user-info{
+    text-align:right;
+    font-size:14px;
+}
+
+.user-info small{
+    opacity:0.7;
+}
+
+.btn-logout{
+    padding:8px 15px;
+    border-radius:20px;
+    background:rgba(255,255,255,0.15);
+    color:white;
+    text-decoration:none;
+    font-size:14px;
+    transition:0.3s;
+}
+
+.btn-logout:hover{
+    background:linear-gradient(135deg,#7b2ff7,#00c6ff);
+}
 </style>
 
 <div class="topbar">
-    🚚 Smart Delivery
-    <a href="{% url 'logout' %}" class="btn-primary">Cerrar sesión</a>
+    
+    <div class="left">
+        🚚 <div>
+            <strong>Smart Delivery</strong><br>
+            <small>Panel de Administrador</small>
+        </div>
+    </div>
+
+    <div class="right">
+        <div class="user-info">
+            Administrador Principal<br>
+            <small>Admin</small>
+        </div>
+
+        <a href="{% url 'logout' %}" class="btn-logout">
+            ⎋ Cerrar sesión
+        </a>
+    </div>
+
 </div>
 
 <div class="menu">

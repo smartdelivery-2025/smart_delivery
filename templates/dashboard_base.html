@@ -252,7 +252,7 @@
 
 
     /* TABLA PRO */
-  
+
     .table-pro th {
         padding: 14px;
         font-size: 13px;
@@ -269,9 +269,11 @@
     /* STATUS */
     .status {
         padding: 5px 12px;
-        border-radius: 20px;
+        border-radius: 12px;
         font-size: 12px;
+        font-weight: 500;
     }
+
 
     .status.active {
         background: #00c851;
@@ -281,7 +283,7 @@
         font-size: 12px;
     }
 
-    
+
     /* HEADER PANEL */
     .panel-header {
         display: flex;
@@ -296,6 +298,9 @@
     }
 
     /* CONTENEDOR TABLA */
+
+
+
     .table-container {
         background: rgba(255, 255, 255, 0.05);
         border-radius: 20px;
@@ -320,6 +325,7 @@
         padding: 16px 12px;
         border-top: 1px solid rgba(255, 255, 255, 0.08);
     }
+
 
     /* CELDA USUARIO */
     .user-cell {
@@ -353,134 +359,182 @@
     }
 
     .badge {
-        background: rgba(255, 255, 255, 0.15);
-        padding: 6px 12px;
-        border-radius: 20px;
+        background: rgba(255, 255, 255, 0.1);
+        padding: 5px 12px;
+        border-radius: 12px;
         font-size: 12px;
     }
 
 
     /* MAPA */
-.map-container {
-    margin-top: 20px;
-    border-radius: 20px;
-    overflow: hidden;
-}
+    .map-container {
+        margin-top: 20px;
+        border-radius: 20px;
+        overflow: hidden;
+    }
 
-#map {
-    width: 100%;
-    height: 350px;
-    border-radius: 20px;
-}
+    #map {
+        width: 100%;
+        height: 350px;
+        border-radius: 20px;
+    }
 
-/* TARJETA RUTA */
-.ruta-card {
-    margin-top: 20px;
-    background: rgba(255,255,255,0.05);
-    padding: 20px;
-    border-radius: 20px;
-}
+    /* TARJETA RUTA */
+    .ruta-card {
+        margin-top: 20px;
+        background: rgba(255, 255, 255, 0.05);
+        padding: 20px;
+        border-radius: 20px;
+    }
 
-/* HEADER RUTA */
-.ruta-header {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 10px;
-}
+    /* HEADER RUTA */
+    .ruta-header {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+    }
 
-/* ESTADOS */
-.estado {
-    padding: 5px 12px;
-    border-radius: 20px;
-    font-size: 12px;
-    margin-left: 10px;
-}
+    /* ESTADOS */
+    .estado {
+        padding: 5px 12px;
+        border-radius: 20px;
+        font-size: 12px;
+        margin-left: 10px;
+    }
 
-.estado.activo {
-    background: #00c851;
-}
+    .estado.activo {
+        background: #00c851;
+    }
 
-/* PROGRESO */
-.progress-bar {
-    width: 100%;
-    height: 6px;
-    background: rgba(255,255,255,0.1);
-    border-radius: 10px;
-    margin: 15px 0;
-    overflow: hidden;
-}
+    /* PROGRESO */
+    .progress-bar {
+        width: 100%;
+        height: 6px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 10px;
+        margin: 15px 0;
+        overflow: hidden;
+    }
 
-.progress {
-    width: 70%;
-    height: 100%;
-    background: linear-gradient(135deg, #7b2ff7, #00c6ff);
-    border-radius: 10px;
-}
+    .progress {
+        width: 70%;
+        height: 100%;
+        background: linear-gradient(135deg, #7b2ff7, #00c6ff);
+        border-radius: 10px;
+    }
 
-.progress {
-    width: 60%;
-    height: 100%;
-    background: linear-gradient(135deg, #7b2ff7, #00c6ff);
-    border-radius: 10px;
-}
+    .progress {
+        width: 60%;
+        height: 100%;
+        background: linear-gradient(135deg, #7b2ff7, #00c6ff);
+        border-radius: 10px;
+    }
 
-/* PARADAS */
-.ruta-card {
-    margin-top: 20px;
-    background: rgba(255,255,255,0.05);
-    padding: 20px;
-    border-radius: 20px;
-}
+    /* PARADAS */
+    .ruta-card {
+        margin-top: 20px;
+        background: rgba(255, 255, 255, 0.05);
+        padding: 20px;
+        border-radius: 20px;
+    }
 
-.paradas {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
+    .paradas {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
 
-.parada {
-    padding: 12px;
-    border-radius: 10px;
-    background: rgba(255,255,255,0.05);
-    display: flex;
-    justify-content: space-between;
-}
+    .parada {
+        padding: 12px;
+        border-radius: 10px;
+        background: rgba(255, 255, 255, 0.05);
+        display: flex;
+        justify-content: space-between;
+    }
 
-/* ESTADOS PARADAS */
-.parada.entregado {
-    background: rgba(0,255,150,0.2);
-}
+    /* ESTADOS PARADAS */
+    .parada.entregado {
+        background: rgba(0, 255, 150, 0.2);
+    }
 
-.parada.proceso {
-    background: rgba(0,150,255,0.2);
-}
+    .parada.proceso {
+        background: rgba(0, 150, 255, 0.2);
+    }
 
-.parada.pendiente {
-    background: rgba(255,255,255,0.05);
-}
+    .parada.pendiente {
+        background: rgba(255, 255, 255, 0.05);
+    }
 
-.hora {
-    font-size: 13px;
-    opacity: 0.7;
-    margin-left: 5px; /* pequeño ajuste */
-}
+    .hora {
+        font-size: 13px;
+        opacity: 0.7;
+        margin-left: 5px;
+        /* pequeño ajuste */
+    }
 
-/* FOOTER */
-.ruta-footer {
-    padding-right: 10px;
-}
+    /* FOOTER */
+    .ruta-footer {
+        padding-right: 10px;
+    }
 
-.ruta-actions {
-    display: flex;
-    gap: 12px; /* 🔥 separación entre botones */
-}
+    .ruta-actions {
+        display: flex;
+        gap: 12px;
+        /* 🔥 separación entre botones */
+    }
 
-.btn-map,
-.btn-create {
-    padding: 10px 16px;  /* 🔥 más espacio interno */
-    border-radius: 20px;
-}
+    .btn-map,
+    .btn-create {
+        padding: 10px 16px;
+        /* 🔥 más espacio interno */
+        border-radius: 20px;
+    }
 
+    .stock {
+        background: rgba(255, 255, 255, 0.08);
+        padding: 6px 14px;
+        border-radius: 12px;
+        font-weight: 500;
+    }
+
+    .status.normal {
+        background: rgba(0, 255, 170, 0.15);
+        color: #00ffa6;
+    }
+
+    .table tbody tr {
+        transition: 0.3s;
+    }
+
+    .table tbody tr:hover {
+        background: rgba(255, 255, 255, 0.05);
+        transform: scale(1.01);
+    }
+
+
+    .btn-stock {
+        display: inline-block;
+        background: rgba(255, 255, 255, 0.1);
+        padding: 6px 12px;
+        border-radius: 12px;
+    }
+
+    .btn-stock:hover {
+        background: linear-gradient(135deg, #7b2ff7, #00c6ff);
+        transform: scale(1.05);
+    }
+
+    .status.pending {
+        background: orange;
+    }
+
+    .status.process {
+        background: #3498db;
+    }
+
+    .status.done {
+        background: #2ecc71;
+    }
 </style>
 
 <div class="topbar">
@@ -548,6 +602,8 @@
     }
 
     window.onload = () => loadSection('dashboard');
+
+
 </script>
 
 {% endblock %}

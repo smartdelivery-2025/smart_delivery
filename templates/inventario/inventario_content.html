@@ -1,0 +1,120 @@
+<div class="panel">
+
+    <!-- HEADER -->
+    <div style="display:flex; justify-content:space-between; align-items:center;">
+        <div>
+            <h3>Gestión de Inventario</h3>
+            <small>Control de stock y productos en tiempo real</small>
+        </div>
+
+        <button onclick="openInventarioModal()" class="btn-create">
+            + Nuevo Artículo
+        </button>
+    </div>
+
+    <!-- TABLA -->
+    <table class="table">
+
+        <thead>
+            <tr>
+                <th>Producto</th>
+                <th>SKU</th>
+                <th>Categoría</th>
+                <th>Cantidad</th>
+                <th>Stock mínimo</th>
+                <th>Ubicación</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            <tr>
+
+                <!-- PRODUCTO -->
+                <td>
+                    <strong>Cajas Medianas (30x30x30 cm)</strong>
+                </td>
+
+                <!-- SKU -->
+                <td>
+                    <span class="badge">BOX-MD-001</span>
+                </td>
+
+                <!-- CATEGORÍA -->
+                <td>
+                    <span class="badge">Embalaje</span>
+                </td>
+
+                <!-- CANTIDAD -->
+                <td>
+                    <span class="stock">80</span>
+                </td>
+
+                <!-- STOCK MIN -->
+                <td>30</td>
+
+                <!-- UBICACIÓN -->
+                <td>Almacén A - Estante 2</td>
+
+                <!-- ESTADO -->
+                <td>
+                    <span class="status normal">Normal</span>
+                </td>
+
+                <!-- ACCIONES -->
+                <td>
+                    <button class="btn-stock">+10</button>
+                </td>
+
+            </tr>
+
+        </tbody>
+
+    </table>
+
+</div>
+
+<!-- MODAL -->
+<div id="modalInventario" class="modal">
+    <div class="modal-content">
+
+        <span onclick="closeInventarioModal()" class="close">✖</span>
+
+        <h3>Agregar Artículo al Inventario</h3>
+        <small>Ingresa los detalles del nuevo artículo</small>
+
+        <input type="text" placeholder="Nombre del producto">
+
+        <div class="grid-2">
+            <input type="text" placeholder="SKU">
+            <input type="text" placeholder="Categoría">
+        </div>
+
+        <div class="grid-2">
+            <input type="number" placeholder="Cantidad">
+            <input type="number" placeholder="Stock mínimo">
+        </div>
+
+        <input type="text" placeholder="Ubicación (Ej: Almacén A - Estante 3)">
+
+        <div class="modal-buttons">
+            <button class="btn-cancel" onclick="closeInventarioModal()">Cancelar</button>
+            <button class="btn-create">Agregar Artículo</button>
+        </div>
+
+    </div>
+</div>
+
+<script>
+
+    function openInventarioModal() {
+        document.getElementById("modalInventario").style.display = "flex";
+    }
+
+    function closeInventarioModal() {
+        document.getElementById("modalInventario").style.display = "none";
+    }
+
+</script>

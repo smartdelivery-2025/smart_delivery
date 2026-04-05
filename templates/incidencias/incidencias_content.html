@@ -1,0 +1,113 @@
+<div class="panel">
+
+    <!-- HEADER -->
+    <div style="display:flex; justify-content:space-between; align-items:center;">
+        <div>
+            <h3>Incidencias Reportadas</h3>
+            <small>Gestión de problemas y reportes del sistema</small>
+        </div>
+
+        <button onclick="openIncidenciaModal()" class="btn-create">
+            + Nueva Incidencia
+        </button>
+    </div>
+
+    <!-- FILTROS -->
+    <div style="margin-top:20px; display:flex; gap:10px;">
+        <div class="btn-cancel">Todas</div>
+        <div class="btn-cancel">Pendientes</div>
+        <div class="btn-cancel">En proceso</div>
+        <div class="btn-cancel">Resueltas</div>
+    </div>
+
+    <!-- TABLA -->
+    <table class="table" style="margin-top:20px;">
+
+        <thead>
+            <tr>
+                <th>Usuario</th>
+                <th>Tipo</th>
+                <th>Descripción</th>
+                <th>Fecha</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            <tr>
+                <td>
+                    <strong>Juan Pérez</strong><br>
+                    <small>cliente@gmail.com</small>
+                </td>
+
+                <td>
+                    <span class="badge">Entrega</span>
+                </td>
+
+                <td>
+                    Pedido no entregado correctamente
+                </td>
+
+                <td>05/04/2026</td>
+
+                <td>
+                    <span class="status pending">Pendiente</span>
+                </td>
+
+                <td>
+                    <button class="action-btn">✔</button>
+                    <button class="action-btn delete">🗑</button>
+                </td>
+            </tr>
+
+        </tbody>
+
+    </table>
+
+    <!-- EMPTY -->
+    <div style="text-align:center; margin-top:40px; opacity:0.6;">
+        ⚠️ No hay incidencias registradas
+    </div>
+
+</div>
+
+<!-- MODAL -->
+<div id="modalIncidencia" class="modal">
+    <div class="modal-content">
+
+        <span onclick="closeIncidenciaModal()" class="close">✖</span>
+
+        <h3>Crear Incidencia</h3>
+        <small>Registra un nuevo problema</small>
+
+        <input type="text" placeholder="Nombre del usuario">
+        <input type="email" placeholder="Correo">
+
+        <select>
+            <option>Tipo de incidencia</option>
+            <option>Entrega</option>
+            <option>Ruta</option>
+            <option>Sistema</option>
+        </select>
+
+        <textarea placeholder="Descripción del problema"></textarea>
+
+        <div class="modal-buttons">
+            <button class="btn-cancel" onclick="closeIncidenciaModal()">Cancelar</button>
+            <button class="btn-create">Guardar</button>
+        </div>
+
+    </div>
+</div>
+
+<script>
+function openIncidenciaModal() {
+    document.getElementById("modalIncidencia").style.display = "flex";
+}
+
+function closeIncidenciaModal() {
+    document.getElementById("modalIncidencia").style.display = "none";
+}
+</script>

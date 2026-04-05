@@ -1,0 +1,54 @@
+<div class="panel">
+    <div style="display:flex; justify-content:space-between; align-items:center;">
+        <div>
+            <h3>Gestión de Pedidos</h3>
+            <small>Administra todos los pedidos del sistema</small>
+        </div>
+
+        <button onclick="openPedidoModal()" style="
+            padding:10px 20px;
+            border:none;
+            border-radius:20px;
+            background: linear-gradient(135deg, #7b2ff7, #00c6ff);
+            color:white;
+            cursor:pointer;
+        ">
+            + Nuevo Pedido
+        </button>
+    </div>
+
+    <div style="text-align:center; margin-top:40px; opacity:0.7;">
+        📦 No hay pedidos registrados
+    </div>
+</div>
+
+<!-- MODAL PEDIDO -->
+<div id="pedidoModal" class="modal">
+    <div class="modal-content" style="width:400px;">
+        <span class="close" onclick="closePedidoModal()">&times;</span>
+
+        <h3>Crear Nuevo Pedido</h3>
+
+        <input type="text" placeholder="Nombre destinatario">
+        <input type="text" placeholder="Teléfono">
+        <input type="text" placeholder="Dirección recogida">
+        <input type="text" placeholder="Dirección entrega">
+        <input type="text" placeholder="Descripción">
+        <input type="number" placeholder="Peso (kg)">
+
+        <div style="display:flex; gap:10px; margin-top:10px;">
+            <button onclick="closePedidoModal()">Cancelar</button>
+            <button style="background:#7b2ff7; color:white;">Crear</button>
+        </div>
+    </div>
+</div>
+
+<script>
+function openPedidoModal() {
+    document.getElementById('pedidoModal').style.display = 'flex';
+}
+
+function closePedidoModal() {
+    document.getElementById('pedidoModal').style.display = 'none';
+}
+</script>

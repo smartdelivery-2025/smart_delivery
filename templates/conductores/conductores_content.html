@@ -1,0 +1,123 @@
+<div class="panel">
+
+    <div class="panel-header">
+        <div>
+            <h3>Gestión de Conductores</h3>
+            <p>Administra los conductores del sistema</p>
+        </div>
+
+        <button onclick="openConductorModal()" class="btn-danger">
+            + Nuevo Conductor
+        </button>
+    </div>
+
+    <div class="table-container">
+        <table class="table-pro">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Contacto</th>
+                    <th>Vehículo</th>
+                    <th>Licencia</th>
+                    <th>Rating</th>
+                    <th>Entregas</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+
+                    <td class="user-cell">
+                        <strong>karolina segura</strong>
+                        <span>conductor@gmail.com</span>
+                    </td>
+
+                    <td>📞 2423534534534</td>
+
+                    <td>🚚 toyota</td>
+
+                    <td>12344566</td>
+
+                    <td>⭐ 5.0</td>
+
+                    <td><span class="badge">0 entregas</span></td>
+
+                    <td><span class="status active">Activo</span></td>
+
+                    <td>
+                        <div class="actions">
+                            <button class="action-btn">⏻</button>
+                            <button class="action-btn delete">🗑</button>
+                        </div>
+                    </td>
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+
+<!-- 🔥 MODAL -->
+<div id="modalConductor" class="modal">
+    <div class="modal-content">
+
+        <span onclick="closeConductorModal()" class="close-btn">✖</span>
+
+        <h3>Crear Nuevo Conductor</h3>
+
+        <div class="form-grid">
+
+            <div>
+                <label>Nombre</label>
+                <input type="text">
+            </div>
+
+            <div>
+                <label>Email</label>
+                <input type="email">
+            </div>
+
+            <div>
+                <label>Contraseña</label>
+                <input type="password">
+            </div>
+
+            <div>
+                <label>Teléfono</label>
+                <input type="text">
+            </div>
+
+            <div>
+                <label>Vehículo</label>
+                <input type="text">
+            </div>
+
+            <div>
+                <label>Licencia</label>
+                <input type="text">
+            </div>
+
+        </div>
+
+        <div class="modal-buttons">
+            <button class="btn-cancel" onclick="closeConductorModal()">Cancelar</button>
+            <button class="btn-danger">Crear</button>
+        </div>
+
+    </div>
+</div>
+
+
+<script>
+function openConductorModal() {
+    document.getElementById('modalConductor').style.display = 'flex';
+}
+
+function closeConductorModal() {
+    document.getElementById('modalConductor').style.display = 'none';
+}
+</script>

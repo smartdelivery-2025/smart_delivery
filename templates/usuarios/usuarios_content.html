@@ -1,230 +1,112 @@
-<div class="card-usuarios">
+<div class="panel">
 
-    <div class="header-usuarios">
+    <!-- HEADER -->
+    <div style="display:flex; justify-content:space-between; align-items:center;">
         <div>
-            <h2>Gestión de Usuarios</h2>
-            <p>Administra todos los usuarios del sistema</p>
+            <h3>Gestión de Usuarios</h3>
+            <small>Administra todos los usuarios del sistema</small>
         </div>
 
-        <div class="acciones-header">
-            <button class="btn-gradient" onclick="openModal('supervisor')">👤 Crear Supervisor</button>
-            <button class="btn-gradient" onclick="openModal('admin')">👤 Crear Admin</button>
+        <div style="display:flex; gap:10px;">
+            <button onclick="openModal('supervisor')" class="btn-create">
+                👤 Crear Supervisor
+            </button>
+
+            <button onclick="openModal('admin')" class="btn-create">
+                👑 Crear Admin
+            </button>
         </div>
     </div>
 
-    <div id="modalAdmin" class="modal">
+    <!-- CARDS -->
+    <div class="cards" style="margin-top:20px;">
+        <div class="card"><div class="number">0</div><small>Total</small></div>
+        <div class="card"><div class="number">0</div><small>Activos</small></div>
+        <div class="card"><div class="number">0</div><small>Inactivos</small></div>
+        <div class="card"><div class="number">0</div><small>Admins</small></div>
+        <div class="card"><div class="number">0</div><small>Supervisores</small></div>
+        <div class="card"><div class="number">0</div><small>Conductores</small></div>
+        <div class="card"><div class="number">0</div><small>Clientes</small></div>
+    </div>
+
+    <!-- FILTROS -->
+    <div style="margin-top:20px; display:flex; gap:10px;">
+        <div class="btn-cancel">Todos (0)</div>
+        <div class="btn-cancel">Admins (0)</div>
+        <div class="btn-cancel">Supervisores (0)</div>
+        <div class="btn-cancel">Conductores (0)</div>
+        <div class="btn-cancel">Clientes (0)</div>
+    </div>
+
+    <!-- EMPTY -->
+    <div style="text-align:center; margin-top:40px; opacity:0.6;">
+        👥 No hay usuarios en esta categoría
+    </div>
+
+</div>
+
+
+<!-- 🔥 MODAL ADMIN (FUERA DEL PANEL) -->
+<div id="modalAdmin" class="modal">
     <div class="modal-content">
-        <span class="close" onclick="closeModalAdmin()">&times;</span>
-        <h3>Crear Admin</h3>
+
+        <span onclick="closeModal('admin')" style="float:right; cursor:pointer;">✖</span>
+
+        <h3>Crear Administrador</h3>
+        <small style="opacity:0.6;">Ingresa los datos del administrador</small>
+
+        <input type="text" placeholder="Nombre completo">
+        <input type="email" placeholder="Correo">
+        <input type="password" placeholder="Contraseña">
+        <input type="text" placeholder="Teléfono">
+
+        <div class="modal-buttons">
+            <button class="btn-cancel" onclick="closeModal('admin')">Cancelar</button>
+            <button class="btn-create">Crear Admin</button>
+        </div>
+
     </div>
 </div>
+
+
+<!-- 🔥 MODAL SUPERVISOR (FUERA DEL PANEL) -->
 <div id="modalSupervisor" class="modal">
     <div class="modal-content">
-        <span class="close" onclick="closeModalSupervisor()">&times;</span>
+
+        <span onclick="closeModal('supervisor')" style="float:right; cursor:pointer;">✖</span>
+
         <h3>Crear Supervisor</h3>
+        <small style="opacity:0.6;">Ingresa los datos del supervisor</small>
+
+        <input type="text" placeholder="Nombre completo">
+        <input type="email" placeholder="Correo">
+        <input type="password" placeholder="Contraseña">
+        <input type="text" placeholder="Teléfono">
+
+        <div class="modal-buttons">
+            <button class="btn-cancel" onclick="closeModal('supervisor')">Cancelar</button>
+            <button class="btn-create">Crear Supervisor</button>
+        </div>
+
     </div>
 </div>
-
-    <!-- 🔥 MÉTRICAS -->
-    <div class="stats">
-        <div class="stat">{{ users|length }}<br><span>Total</span></div>
-        <div class="stat">{{ users|length }}<br><span>Activos</span></div>
-        <div class="stat">0<br><span>Inactivos</span></div>
-        <div class="stat">{{ users|dictsort:"role"|length }}<br><span>Admins</span></div>
-        <div class="stat">0<br><span>Supervisores</span></div>
-        <div class="stat">0<br><span>Conductores</span></div>
-        <div class="stat">0<br><span>Clientes</span></div>
-    </div>
-
-    <!-- 🔥 TABS -->
-    <div class="tabs">
-        <span class="active">Todos ({{ users|length }})</span>
-        <span>Admins</span>
-        <span>Supervisores</span>
-        <span>Conductores</span>
-        <span>Clientes</span>
-    </div>
-
-    {% if users %}
-    <table class="tabla-usuarios">
-        <tr>
-            <th>Usuario</th>
-            <th>Email</th>
-            <th>Rol</th>
-            <th>Empresa</th>
-            <th>Teléfono</th>
-            <th>Estado</th>
-            <th>Acciones</th>
-        </tr>
-
-        {% for user in users %}
-        <tr>
-            <td>{{ user.username }}</td>
-            <td>{{ user.email }}</td>
-            <td><span class="badge">{{ user.role }}</span></td>
-            <td>{{ user.company.name|default:"N/A" }}</td>
-            <td>{{ user.phone|default:"-" }}</td>
-            <td><span class="status active">Activo</span></td>
-            <td>
-                <button class="btn-delete">🗑</button>
-            </td>
-        </tr>
-        {% endfor %}
-    </table>
-
-    {% else %}
-    <div class="empty">
-        <div class="icon">👥</div>
-        <p>No hay usuarios en esta categoría</p>
-    </div>
-    {% endif %}
-
-</div>
-
-</div>
-
-<style>
-    .tabla-usuarios {
-        width: 100%;
-        border-collapse: collapse;
-        margin-top: 20px;
-    }
-
-    .tabla-usuarios th,
-    .tabla-usuarios td {
-        padding: 12px;
-        text-align: left;
-    }
-
-    .tabla-usuarios tr {
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    }
-
-    .badge {
-        background: rgba(0, 200, 255, 0.2);
-        padding: 5px 10px;
-        border-radius: 20px;
-        font-size: 12px;
-    }
-
-    .status.active {
-        background: rgba(0, 255, 150, 0.3);
-        padding: 5px 10px;
-        border-radius: 10px;
-        font-size: 12px;
-    }
-
-    .btn-delete {
-        background: rgba(255, 80, 80, 0.2);
-        border: none;
-        padding: 6px 10px;
-        border-radius: 10px;
-        cursor: pointer;
-    }
-
-    .card-usuarios {
-        background: rgba(255, 255, 255, 0.05);
-        backdrop-filter: blur(10px);
-        border-radius: 20px;
-        padding: 25px;
-        margin-top: 20px;
-        box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-    }
-
-    .header-usuarios {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 20px;
-    }
-
-    .header-usuarios h2 {
-        margin: 0;
-    }
-
-    .header-usuarios p {
-        margin: 0;
-        font-size: 13px;
-        color: #aaa;
-    }
-
-    /* BOTONES */
-    .btn-gradient {
-        background: linear-gradient(135deg, #00c6ff, #7b2ff7);
-        border: none;
-        padding: 10px 15px;
-        border-radius: 20px;
-        color: white;
-        cursor: pointer;
-        margin-left: 10px;
-    }
-
-    /* STATS */
-    .stats {
-        display: flex;
-        gap: 10px;
-        margin-bottom: 20px;
-    }
-
-    .stat {
-        flex: 1;
-        background: rgba(255, 255, 255, 0.05);
-        padding: 15px;
-        border-radius: 15px;
-        text-align: center;
-        font-size: 18px;
-    }
-
-    .stat span {
-        font-size: 12px;
-        color: #aaa;
-    }
-
-    /* TABS */
-    .tabs {
-        display: flex;
-        gap: 10px;
-        margin-bottom: 30px;
-    }
-
-    .tabs span {
-        padding: 6px 12px;
-        border-radius: 20px;
-        background: rgba(255, 255, 255, 0.05);
-        cursor: pointer;
-        font-size: 12px;
-    }
-
-    .tabs .active {
-        background: #7b2ff7;
-    }
-
-    /* EMPTY */
-    .empty {
-        text-align: center;
-        color: #aaa;
-    }
-
-    .empty .icon {
-        font-size: 40px;
-        margin-bottom: 10px;
-    }
-</style>
 
 <script>
-function openModalAdmin() {
-    document.getElementById('modalAdmin').style.display = 'flex';
+function openModal(type) {
+    if (type === 'admin') {
+        document.getElementById('modalAdmin').style.display = 'flex';
+    }
+    if (type === 'supervisor') {
+        document.getElementById('modalSupervisor').style.display = 'flex';
+    }
 }
 
-function closeModalAdmin() {
-    document.getElementById('modalAdmin').style.display = 'none';
-}
-
-function openModalSupervisor() {
-    document.getElementById('modalSupervisor').style.display = 'flex';
-}
-
-function closeModalSupervisor() {
-    document.getElementById('modalSupervisor').style.display = 'none';
+function closeModal(type) {
+    if (type === 'admin') {
+        document.getElementById('modalAdmin').style.display = 'none';
+    }
+    if (type === 'supervisor') {
+        document.getElementById('modalSupervisor').style.display = 'none';
+    }
 }
 </script>

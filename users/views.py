@@ -107,23 +107,23 @@ def eliminar_empresa(request, id):
 
 @login_required
 def pedidos(request):
-    return HttpResponse("<h2>Pedidos</h2>")
+    return render(request, 'pedidos/pedidos_content.html')
 
 @login_required
 def conductores(request):
-    return HttpResponse("<h2>Conductores</h2>")
+    return render(request, 'conductores/conductores_content.html'   )
 
 @login_required
 def rutas(request):
-    return HttpResponse("<h2>Rutas</h2>")
+    return render(request, 'rutas/rutas_content.html')
 
 @login_required
 def inventario(request):
-    return HttpResponse("<h2>Inventario</h2>")
+    return render(request, 'inventario/inventario_content.html')
 
 @login_required
 def incidencias(request):
-    return HttpResponse("<h2>Incidencias</h2>")
+    return render(request, 'incidencias/incidencias_content.html'   )
 
 def logout_view(request):
     logout(request)

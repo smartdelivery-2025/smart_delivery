@@ -43,35 +43,35 @@
 </div>
 
 <div class="tabla-empresas">
-<table>
-    <thead>
-        <tr>
-            <th>Nombre</th>
-            <th>Código</th>
-            <th>Fecha de Creación</th>
-            <th>Acciones</th>
-        </tr>
-    </thead>
+    <table>
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Código</th>
+                <th>Fecha de Creación</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
 
-    <tbody>
-        {% for empresa in empresas %}
-        <tr>
-            <td>📦 {{ empresa.name }}</td>
+        <tbody>
+            {% for empresa in empresas %}
+            <tr>
+                <td>📦 {{ empresa.name }}</td>
 
-            <td>
-                <span class="badge">{{ empresa.code }}</span>
-            </td>
+                <td>
+                    <span class="badge">{{ empresa.code }}</span>
+                </td>
 
-            <td>{{ empresa.created_at }}</td>
+                <td>{{ empresa.created_at }}</td>
 
-            <td>
-                <button class="btn-action">📋 Copiar código</button>
-                <button class="btn-action">🗑 Eliminar</button>
-            </td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
+                <td>
+                    <button class="btn-action">📋 Copiar código</button>
+                    <button class="btn-action">🗑 Eliminar</button>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 </div>
 
 
@@ -320,7 +320,7 @@
     }
 
     .btn-new {
-        background: #ff2d2d;
+        background: linear-gradient(135deg, #7b2ff7, #00c6ff);
         color: white;
         border: none;
         padding: 10px 18px;
@@ -332,7 +332,7 @@
 
     .btn-new:hover {
         transform: scale(1.05);
-        background: #ff0000;
+
     }
 
     .tabla-empresas {
@@ -518,7 +518,7 @@
     }
 
     .btn-create {
-        background: #ff2d2d;
+        background: linear-gradient(135deg, #7b2ff7, #00c6ff);
         color: white;
         border: none;
         padding: 8px 14px;

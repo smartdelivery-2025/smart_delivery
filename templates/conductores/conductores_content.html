@@ -1,4 +1,4 @@
-<div class="panel">
+<div class="card-conductores">
 
     <div class="panel-header">
         <div>
@@ -11,10 +11,10 @@
         </button>
     </div>
 
-    <div class="table-container">
+    
         <table class="table-pro">
             <thead>
-                <tr>
+                <tr class="table-row">
                     <th>Nombre</th>
                     <th>Contacto</th>
                     <th>Vehículo</th>
@@ -27,7 +27,7 @@
             </thead>
 
             <tbody>
-                <tr>
+                <tr class="table-row">
 
                     <td class="user-cell">
                         <strong>karolina segura</strong>
@@ -104,20 +104,159 @@
         </div>
 
         <div class="modal-buttons">
-            <button class="btn-cancel" onclick="closeConductorModal()">Cancelar</button>
-            <button class="btn-danger">Crear</button>
+
+            <button onclick="closeConductorModal()" class="btn-cancel">
+                Cancelar
+            </button>
+
+            <button class="btn-create">
+                Crear Conductor
+            </button>
+
         </div>
 
     </div>
 </div>
 
+<style>
+    .card-conductores {
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(12px);
+        border-radius: 18px;
+        padding: 25px;
+        margin-top: 20px;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    /* HEADER */
+    .header-conductores {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+    .header-conductores h3 {
+        margin: 0;
+    }
+
+    .header-conductores small {
+        color: #aaa;
+    }
+
+    /* TABLA */
+    .table-conductores {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .table-conductores th {
+        text-align: left;
+        padding: 12px 15px;
+        font-size: 13px;
+        color: #aaa;
+    }
+
+    .table-conductores td {
+        padding: 14px 15px;
+        color: white;
+    }
+
+    /* FILAS */
+    .table-row {
+        transition: 0.3s;
+    }
+
+    .table-row:hover {
+        background: rgba(255, 255, 255, 0.05);
+    }
+
+    /* BADGE */
+    .badge {
+        background: rgba(255, 255, 255, 0.1);
+        padding: 5px 12px;
+        border-radius: 15px;
+        font-size: 12px;
+    }
+
+    /* ESTADO */
+    .estado {
+        padding: 5px 12px;
+        border-radius: 15px;
+        font-size: 12px;
+    }
+
+    .estado.activo {
+        background: #22c55e;
+    }
+
+    .estado.inactivo {
+        background: #ef4444;
+    }
+
+    /* BOTONES */
+    .btn-action {
+        background: rgba(255, 255, 255, 0.1);
+        border: none;
+        padding: 6px 10px;
+        border-radius: 10px;
+        color: white;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .btn-action:hover {
+        background: linear-gradient(135deg, #7c3aed, #06b6d4);
+    }
+
+    /* CONTENEDOR BOTONES */
+    .modal-buttons {
+        display: flex;
+        justify-content: flex-end;
+        gap: 10px;
+        margin-top: 20px;
+    }
+
+    /* CANCELAR */
+    .btn-cancel {
+        background: rgba(255, 255, 255, 0.1);
+        border: none;
+        padding: 10px 18px;
+        border-radius: 25px;
+        color: white;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .btn-cancel:hover {
+        background: rgba(255, 255, 255, 0.2);
+    }
+
+    /* CREAR */
+    .btn-create {
+        background: linear-gradient(135deg, #7b2ff7, #00c6ff);
+        border: none;
+        padding: 10px 18px;
+        border-radius: 25px;
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .btn-create:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 12px rgba(123, 47, 247, 0.6);
+    }
+</style>
+
 
 <script>
-function openConductorModal() {
-    document.getElementById('modalConductor').style.display = 'flex';
-}
+    function openConductorModal() {
+        document.getElementById('modalConductor').style.display = 'flex';
+    }
 
-function closeConductorModal() {
-    document.getElementById('modalConductor').style.display = 'none';
-}
+    function closeConductorModal() {
+        document.getElementById('modalConductor').style.display = 'none';
+    }
 </script>

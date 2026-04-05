@@ -1,7 +1,8 @@
-<div class="panel">
+<div class="card-inventario">
+
 
     <!-- HEADER -->
-    <div style="display:flex; justify-content:space-between; align-items:center;">
+    <div class="header-inventario">
         <div>
             <h3>Gestión de Inventario</h3>
             <small>Control de stock y productos en tiempo real</small>
@@ -13,10 +14,10 @@
     </div>
 
     <!-- TABLA -->
-    <table class="table">
+    <table class="table-inventario">
 
         <thead>
-            <tr>
+             <tr class="table-row">
                 <th>Producto</th>
                 <th>SKU</th>
                 <th>Categoría</th>
@@ -30,40 +31,22 @@
 
         <tbody>
 
-            <tr>
+            <tr class="table-row">
 
-                <!-- PRODUCTO -->
-                <td>
-                    <strong>Cajas Medianas (30x30x30 cm)</strong>
-                </td>
+                <td><strong>Cajas Medianas (30x30x30 cm)</strong></td>
 
-                <!-- SKU -->
-                <td>
-                    <span class="badge">BOX-MD-001</span>
-                </td>
+                <td><span class="badge">BOX-MD-001</span></td>
 
-                <!-- CATEGORÍA -->
-                <td>
-                    <span class="badge">Embalaje</span>
-                </td>
+                <td><span class="badge">Embalaje</span></td>
 
-                <!-- CANTIDAD -->
-                <td>
-                    <span class="stock">80</span>
-                </td>
+                <td><span class="stock">80</span></td>
 
-                <!-- STOCK MIN -->
                 <td>30</td>
 
-                <!-- UBICACIÓN -->
                 <td>Almacén A - Estante 2</td>
 
-                <!-- ESTADO -->
-                <td>
-                    <span class="status normal">Normal</span>
-                </td>
+                <td><span class="status normal">Normal</span></td>
 
-                <!-- ACCIONES -->
                 <td>
                     <button class="btn-stock">+10</button>
                 </td>
@@ -74,13 +57,14 @@
 
     </table>
 
+
 </div>
 
-<!-- MODAL -->
+<!-- MODAL INVENTARIO -->
 <div id="modalInventario" class="modal">
     <div class="modal-content">
 
-        <span onclick="closeInventarioModal()" class="close">✖</span>
+        <span onclick="closeInventarioModal()" style="cursor:pointer;">✖</span>
 
         <h3>Agregar Artículo al Inventario</h3>
         <small>Ingresa los detalles del nuevo artículo</small>
@@ -97,15 +81,196 @@
             <input type="number" placeholder="Stock mínimo">
         </div>
 
-        <input type="text" placeholder="Ubicación (Ej: Almacén A - Estante 3)">
+        <input type="text" placeholder="Ubicación">
 
         <div class="modal-buttons">
             <button class="btn-cancel" onclick="closeInventarioModal()">Cancelar</button>
-            <button class="btn-create">Agregar Artículo</button>
+            <button class="btn-create">Agregar</button>
         </div>
 
     </div>
 </div>
+
+<style>
+    /* CARD */
+    .card-inventario {
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(12px);
+        border-radius: 18px;
+        padding: 25px;
+        margin-top: 20px;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    /* HEADER */
+    .header-inventario {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+    .header-inventario h3 {
+        margin: 0;
+    }
+
+    .header-inventario small {
+        color: #aaa;
+    }
+
+    /* BOTÓN NUEVO */
+    .btn-create {
+        background: linear-gradient(135deg, #7b2ff7, #00c6ff);
+        border: none;
+        padding: 10px 18px;
+        border-radius: 25px;
+        color: white;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .btn-create:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 12px rgba(123, 47, 247, 0.6);
+    }
+
+    /* TABLA */
+    .table-inventario {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    /* HEADERS */
+    .table-inventario th {
+        text-align: left;
+        padding: 12px 15px;
+        font-size: 13px;
+        color: #aaa;
+    }
+
+    /* CELDAS */
+    .table-inventario td {
+        padding: 14px 15px;
+        color: white;
+        vertical-align: middle;
+    }
+
+    /* FILAS */
+    .table-row {
+        transition: 0.3s;
+    }
+
+    .table-row:hover {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 10px;
+    }
+
+    /* BADGES */
+    .badge {
+        background: rgba(255, 255, 255, 0.1);
+        padding: 5px 12px;
+        border-radius: 15px;
+        font-size: 12px;
+    }
+
+    /* STOCK */
+    .stock {
+        font-weight: bold;
+    }
+
+    /* ESTADOS */
+    .status {
+        padding: 5px 12px;
+        border-radius: 15px;
+        font-size: 12px;
+    }
+
+    .status.normal {
+        background: #22c55e;
+    }
+
+    .status.low {
+        background: #f59e0b;
+    }
+
+    .status.out {
+        background: #ef4444;
+    }
+
+    /* BOTONES ACCIÓN */
+    .btn-stock {
+        background: rgba(255, 255, 255, 0.1);
+        border: none;
+        padding: 6px 10px;
+        border-radius: 10px;
+        color: white;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .btn-stock:hover {
+        background: linear-gradient(135deg, #7c3aed, #06b6d4);
+    }
+
+    /* MODAL */
+    .modal {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.6);
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+    }
+
+    .modal-content {
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(12px);
+        padding: 25px;
+        border-radius: 18px;
+        width: 400px;
+        color: white;
+    }
+
+    .modal-content input {
+        width: 100%;
+        padding: 10px;
+        margin-top: 10px;
+        border-radius: 10px;
+        border: none;
+        background: rgba(255, 255, 255, 0.08);
+        color: white;
+    }
+
+    /* GRID */
+    .grid-2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+
+    /* BOTONES MODAL */
+    .modal-buttons {
+        display: flex;
+        justify-content: flex-end;
+        gap: 10px;
+        margin-top: 15px;
+    }
+
+    .btn-cancel {
+        background: #444;
+        border: none;
+        padding: 8px 14px;
+        border-radius: 10px;
+        color: white;
+    }
+
+    .modal {
+        display: none;
+        justify-content: center;
+        align-items: center;
+    }
+</style>
 
 <script>
 

@@ -36,19 +36,77 @@
         <input type="text" placeholder="Descripción">
         <input type="number" placeholder="Peso (kg)">
 
-        <div style="display:flex; gap:10px; margin-top:10px;">
-            <button onclick="closePedidoModal()">Cancelar</button>
-            <button style="background:#7b2ff7; color:white;">Crear</button>
+        <div class="modal-buttons">
+            <button onclick="closePedidoModal()" class="btn-cancel">
+                Cancelar
+            </button>
+
+            <button class="btn-create">
+                Crear Pedido
+            </button>
         </div>
     </div>
 </div>
 
-<script>
-function openPedidoModal() {
-    document.getElementById('pedidoModal').style.display = 'flex';
-}
 
-function closePedidoModal() {
-    document.getElementById('pedidoModal').style.display = 'none';
-}
+<style>
+    .modal-content input {
+        width: 100%;
+        padding: 10px;
+        margin-top: 10px;
+        border-radius: 10px;
+        border: none;
+        background: rgba(255, 255, 255, 0.08);
+        color: white;
+    }
+
+    /* CONTENEDOR */
+    .modal-buttons {
+        display: flex;
+        justify-content: flex-end;
+        gap: 10px;
+        margin-top: 20px;
+    }
+
+    /* CANCELAR */
+    .btn-cancel {
+        background: rgba(255, 255, 255, 0.1);
+        border: none;
+        padding: 10px 18px;
+        border-radius: 25px;
+        color: white;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .btn-cancel:hover {
+        background: rgba(255, 255, 255, 0.2);
+    }
+
+    /* CREAR */
+    .btn-create {
+        background: linear-gradient(135deg, #7b2ff7, #00c6ff);
+        border: none;
+        padding: 10px 18px;
+        border-radius: 25px;
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .btn-create:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 12px rgba(123, 47, 247, 0.6);
+    }
+</style>
+
+<script>
+    function openPedidoModal() {
+        document.getElementById('pedidoModal').style.display = 'flex';
+    }
+
+    function closePedidoModal() {
+        document.getElementById('pedidoModal').style.display = 'none';
+    }
 </script>

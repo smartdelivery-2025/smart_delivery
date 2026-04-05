@@ -1,5 +1,6 @@
 <div class="card-empresas">
 
+    <!-- HEADER -->
     <div class="header-empresas">
         <div>
             <h2>Gestión de Empresas</h2>
@@ -11,79 +12,78 @@
         </button>
     </div>
 
-    <!-- TABLA -->
+    <!-- ✅ TABLA ADENTRO -->
     <div class="tabla-empresas">
-        <!-- aquí va tu loop -->
-    </div>
+        <table>
+            <thead>
+                 <tr class="table-row">
+                    <th>Nombre</th>
+                    <th>Código</th>
+                    <th>Fecha de Creación</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
 
-</div>
+            <tbody>
+                {% for empresa in empresas %}
+                <tr class="table-row">
+                    <td>📦 {{ empresa.name }}</td>
+                    <td><span class="badge">{{ empresa.code }}</span></td>
+                    <td>{{ empresa.created_at }}</td>
+                    <td>
+                        <button class="btn-action">📋 Copiar código</button>
+                        <button class="btn-action">🗑 Eliminar</button>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    </div>
+    
 
 <div id="modalEmpresa" class="modal">
     <div class="modal-content">
 
-        <span class="close" onclick="closeModal()">&times;</span>
+        <span class="close" onclick="closeModal()">×</span>
 
         <h3>Crear Nueva Empresa</h3>
         <p>Ingresa el nombre de la empresa y genera un código único</p>
 
-        <input type="text" id="nombreEmpresa" placeholder="Ej: Transportes Colombia">
+        <label>Nombre de la Empresa</label>
+        <input type="text" placeholder="Ej: Transportes México">
 
+        <label>Código de Empresa</label>
         <div class="codigo-box">
-            <input type="text" id="codigoEmpresa" placeholder="Ej: EMP001">
-            <button onclick="generarCodigo()">Generar</button>
+            <input type="text" id="codigoEmpresa" placeholder="Ej: TRAMES001">
+            <button class="btn-generate" onclick="generarCodigo()">Generar</button>
+            
         </div>
+
+        <small class="info-text">
+            El código debe ser único y será usado por los clientes para registrarse
+        </small>
 
         <div class="modal-actions">
             <button class="btn-cancel" onclick="closeModal()">Cancelar</button>
-            <button class="btn-create" onclick="crearEmpresa()">Crear Empresa</button>
+            <button class="btn-create">Crear Empresa</button>
         </div>
 
     </div>
 </div>
-</div>
-
-<div class="tabla-empresas">
-    <table>
-        <thead>
-            <tr>
-                <th>Nombre</th>
-                <th>Código</th>
-                <th>Fecha de Creación</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-
-        <tbody>
-            {% for empresa in empresas %}
-            <tr>
-                <td>📦 {{ empresa.name }}</td>
-
-                <td>
-                    <span class="badge">{{ empresa.code }}</span>
-                </td>
-
-                <td>{{ empresa.created_at }}</td>
-
-                <td>
-                    <button class="btn-action">📋 Copiar código</button>
-                    <button class="btn-action">🗑 Eliminar</button>
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-</div>
 
 
 <style>
-    .card-empresas {
+    .card-container {
         background: rgba(255, 255, 255, 0.05);
+        /* transparencia */
         backdrop-filter: blur(10px);
-        border-radius: 20px;
-        padding: 25px;
-        margin-top: 20px;
-        box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        /* efecto vidrio */
+        border-radius: 16px;
+        padding: 20px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
     }
+
 
     .header-empresas {
         display: flex;
@@ -103,221 +103,7 @@
         color: #aaa;
     }
 
-    .header-empresas {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 20px;
-    }
 
-    .header-empresas h2 {
-        margin: 0;
-        font-size: 20px;
-    }
-
-    .header-empresas p {
-        margin: 0;
-        font-size: 13px;
-        color: #aaa;
-    }
-
-    .header-empresas {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 20px;
-    }
-
-    .header-empresas h2 {
-        margin: 0;
-        font-size: 20px;
-    }
-
-    .header-empresas p {
-        margin: 0;
-        font-size: 13px;
-        color: #aaa;
-    }
-
-    .header-empresas {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 20px;
-    }
-
-    .header-empresas h2 {
-        margin: 0;
-        font-size: 20px;
-    }
-
-    .header-empresas p {
-        margin: 0;
-        font-size: 13px;
-        color: #aaa;
-    }
-
-    .header-empresas {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 20px;
-    }
-
-    .header-empresas h2 {
-        margin: 0;
-        font-size: 20px;
-    }
-
-    .header-empresas p {
-        margin: 0;
-        font-size: 13px;
-        color: #aaa;
-    }
-
-    .header-empresas {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 20px;
-    }
-
-    .header-empresas h2 {
-        margin: 0;
-        font-size: 20px;
-    }
-
-    .header-empresas p {
-        margin: 0;
-        font-size: 13px;
-        color: #aaa;
-    }
-
-    .header-empresas {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 20px;
-    }
-
-    .header-empresas h2 {
-        margin: 0;
-        font-size: 20px;
-    }
-
-    .header-empresas p {
-        margin: 0;
-        font-size: 13px;
-        color: #aaa;
-    }
-
-    .header-empresas {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 20px;
-    }
-
-    .header-empresas h2 {
-        margin: 0;
-        font-size: 20px;
-    }
-
-    .header-empresas p {
-        margin: 0;
-        font-size: 13px;
-        color: #aaa;
-    }
-
-    .header-empresas {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 20px;
-    }
-
-    .header-empresas h2 {
-        margin: 0;
-        font-size: 20px;
-    }
-
-    .header-empresas p {
-        margin: 0;
-        font-size: 13px;
-        color: #aaa;
-    }
-
-    .header-empresas {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 20px;
-    }
-
-    .header-empresas h2 {
-        margin: 0;
-        font-size: 20px;
-    }
-
-    .header-empresas p {
-        margin: 0;
-        font-size: 13px;
-        color: #aaa;
-    }
-
-    .header-empresas {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 20px;
-    }
-
-    .header-empresas h2 {
-        margin: 0;
-        font-size: 20px;
-    }
-
-    .header-empresas p {
-        margin: 0;
-        font-size: 13px;
-        color: #aaa;
-    }
-
-    .header-empresas {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 20px;
-    }
-
-    .header-empresas h2 {
-        margin: 0;
-        font-size: 20px;
-    }
-
-    .header-empresas p {
-        margin: 0;
-        font-size: 13px;
-        color: #aaa;
-    }
-
-    .header-empresas {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 20px;
-    }
-
-    .header-empresas h2 {
-        margin: 0;
-        font-size: 20px;
-    }
-
-    .header-empresas p {
-        margin: 0;
-        font-size: 13px;
-        color: #aaa;
-    }
 
     .btn-new {
         background: linear-gradient(135deg, #7b2ff7, #00c6ff);
@@ -335,169 +121,9 @@
 
     }
 
-    .tabla-empresas {
-        margin-top: 15px;
-    }
-
-    .tabla-empresas table {
-        width: 100%;
-        border-collapse: collapse;
-        color: white;
-    }
-
-    .tabla-empresas th {
-        text-align: left;
-        font-size: 13px;
-        color: #aaa;
-        padding: 10px;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    }
-
-    .tabla-empresas td {
-        padding: 12px 10px;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    }
-
-    .badge {
-        background: rgba(255, 255, 255, 0.1);
-        padding: 5px 10px;
-        border-radius: 15px;
-        font-size: 12px;
-    }
-
-    .btn-action {
-        background: #1f2a44;
-        border: none;
-        padding: 6px 10px;
-        border-radius: 10px;
-        color: white;
-        font-size: 12px;
-        margin-right: 5px;
-        cursor: pointer;
-        transition: 0.3s;
-    }
 
     .btn-action:hover {
         background: #2f3d63;
-    }
-
-    /* 🔥 FONDO OSCURO */
-    .modal {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.7);
-        backdrop-filter: blur(5px);
-        justify-content: center;
-        align-items: center;
-        z-index: 999;
-    }
-
-    .modal-content {
-        background: rgba(30, 34, 53, 0.9);
-        backdrop-filter: blur(10px);
-        padding: 25px;
-        border-radius: 15px;
-        width: 380px;
-        color: white;
-        box-shadow: 0 0 40px rgba(0, 0, 0, 0.6);
-        position: relative;
-    }
-
-    .modal-content input {
-        width: 100%;
-        padding: 12px;
-        margin: 8px 0;
-        border-radius: 10px;
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        outline: none;
-        background: rgba(255, 255, 255, 0.05);
-        color: white;
-        transition: 0.3s;
-    }
-
-    /* ✨ EFECTO MORADO AL HACER CLICK */
-    .modal-content input:focus {
-        border: 1px solid #7b2ff7;
-        box-shadow: 0 0 8px rgba(123, 47, 247, 0.6);
-    }
-
-    /* 🔥 CAJA DEL MODAL */
-    .modal-content input {
-        width: 100%;
-        padding: 12px;
-        margin: 8px 0;
-        border-radius: 10px;
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        outline: none;
-        background: rgba(255, 255, 255, 0.05);
-        color: white;
-        transition: 0.3s;
-    }
-
-    /* ✨ EFECTO MORADO AL HACER CLICK */
-    .modal-content input:focus {
-        border: 1px solid #7b2ff7;
-        box-shadow: 0 0 8px rgba(123, 47, 247, 0.6);
-    }
-
-    /* ✨ ANIMACIÓN */
-    @keyframes fadeIn {
-        from {
-            transform: scale(0.9);
-            opacity: 0;
-        }
-
-        to {
-            transform: scale(1);
-            opacity: 1;
-        }
-    }
-
-    /* TITULO */
-    .modal-content h3 {
-        margin-bottom: 5px;
-    }
-
-    /* TEXTO */
-    .modal-content p {
-        font-size: 13px;
-        color: #aaa;
-        margin-bottom: 15px;
-    }
-
-    /* INPUTS */
-    .modal-content input {
-        width: 100%;
-        padding: 10px;
-        margin: 8px 0;
-        border-radius: 8px;
-        border: none;
-        outline: none;
-        background: #3a3f5a;
-        color: white;
-    }
-
-    /* INPUT CON BOTÓN */
-    .modal-content input {
-        width: 100%;
-        padding: 12px;
-        margin: 8px 0;
-        border-radius: 10px;
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        outline: none;
-        background: rgba(255, 255, 255, 0.05);
-        color: white;
-        transition: 0.3s;
-    }
-
-    /* ✨ EFECTO MORADO AL HACER CLICK */
-    .modal-content input:focus {
-        border: 1px solid #7b2ff7;
-        box-shadow: 0 0 8px rgba(123, 47, 247, 0.6);
     }
 
     /* BOTONES ABAJO */
@@ -533,6 +159,68 @@
         cursor: pointer;
         font-size: 18px;
         color: #aaa;
+    }
+
+    .table-text {
+        transition: all 0.3s ease;
+        cursor: pointer;
+    }
+
+    .table-text:hover {
+        color: #a78bfa;
+        transform: scale(1.02);
+    }
+
+    .btn-action {
+        background: rgba(255, 255, 255, 0.1);
+        border: none;
+        padding: 6px 10px;
+        border-radius: 10px;
+        color: white;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .btn-action:hover {
+        background: linear-gradient(135deg, #7c3aed, #06b6d4);
+    }
+
+    .card-empresas {
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(12px);
+        border-radius: 18px;
+        padding: 25px;
+        margin-top: 20px;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    
+
+    .table-row {
+        transition: all 0.3s ease;
+    }
+
+    .table-row:hover {
+        background: rgba(255, 255, 255, 0.05);
+    }
+
+
+    .tabla-empresas table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .tabla-empresas th {
+        text-align: left;
+        padding: 12px 15px;
+        font-size: 13px;
+        color: #aaa;
+    }
+
+    .tabla-empresas td {
+        padding: 14px 15px;
+        color: white;
+        vertical-align: middle;
     }
 </style>
 

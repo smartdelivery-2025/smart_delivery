@@ -1,79 +1,79 @@
-<div class="panel">
+<div class="card-incidencias">
 
     <!-- HEADER -->
-    <div style="display:flex; justify-content:space-between; align-items:center;">
+    <div class="header-incidencias">
         <div>
-            <h3>Incidencias Reportadas</h3>
-            <small>Gestión de problemas y reportes del sistema</small>
+            <h2>Incidencias Reportadas</h2>
+            <p>Gestión de problemas y reportes del sistema</p>
         </div>
 
-        <button onclick="openIncidenciaModal()" class="btn-create">
+        <button onclick="openIncidenciaModal()" class="btn-new">
             + Nueva Incidencia
         </button>
     </div>
 
     <!-- FILTROS -->
-    <div style="margin-top:20px; display:flex; gap:10px;">
-        <div class="btn-cancel">Todas</div>
-        <div class="btn-cancel">Pendientes</div>
-        <div class="btn-cancel">En proceso</div>
-        <div class="btn-cancel">Resueltas</div>
+    <div class="filtros">
+        <span class="filtro">Todas</span>
+        <span class="filtro">Pendientes</span>
+        <span class="filtro">En proceso</span>
+        <span class="filtro">Resueltas</span>
     </div>
 
     <!-- TABLA -->
-    <table class="table" style="margin-top:20px;">
+    <div class="tabla-incidencias">
+        <table>
+            <thead>
+                 <tr class="table-row">
+                    <th>Usuario</th>
+                    <th>Tipo</th>
+                    <th>Descripción</th>
+                    <th>Fecha</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
 
-        <thead>
-            <tr>
-                <th>Usuario</th>
-                <th>Tipo</th>
-                <th>Descripción</th>
-                <th>Fecha</th>
-                <th>Estado</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
+            <tbody>
+                <tr class="table-row">
+                    <td class="table-text">
+                        <div class="usuario">
+                            <strong>Juan Pérez</strong>
+                            <small>cliente@gmail.com</small>
+                        </div>
+                    </td>
 
-        <tbody>
+                    <td>
+                        <span class="badge table-text">Entrega</span>
+                    </td>
 
-            <tr>
-                <td>
-                    <strong>Juan Pérez</strong><br>
-                    <small>cliente@gmail.com</small>
-                </td>
+                    <td class="table-text">
+                        Pedido no entregado correctamente
+                    </td>
 
-                <td>
-                    <span class="badge">Entrega</span>
-                </td>
+                    <td class="table-text">05/04/2026</td>
 
-                <td>
-                    Pedido no entregado correctamente
-                </td>
+                    <td>
+                        <span class="status pending">Pendiente</span>
+                    </td>
 
-                <td>05/04/2026</td>
-
-                <td>
-                    <span class="status pending">Pendiente</span>
-                </td>
-
-                <td>
-                    <button class="action-btn">✔</button>
-                    <button class="action-btn delete">🗑</button>
-                </td>
-            </tr>
-
-        </tbody>
-
-    </table>
+                    <td class="actions">
+                        <button class="btn-action">✔</button>
+                        <button class="btn-action delete">🗑</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
     <!-- EMPTY -->
-    <div style="text-align:center; margin-top:40px; opacity:0.6;">
+    <div class="empty">
         ⚠️ No hay incidencias registradas
     </div>
 
 </div>
 
-<!-- MODAL -->
+<!-- 🔥 MODAL (IMPORTANTE: fuera del card) -->
 <div id="modalIncidencia" class="modal">
     <div class="modal-content">
 
@@ -102,12 +102,202 @@
     </div>
 </div>
 
-<script>
-function openIncidenciaModal() {
-    document.getElementById("modalIncidencia").style.display = "flex";
-}
 
-function closeIncidenciaModal() {
-    document.getElementById("modalIncidencia").style.display = "none";
-}
+<style>
+    /* CONTENEDOR IGUAL A EMPRESAS */
+    .card-incidencias {
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(12px);
+        border-radius: 18px;
+        padding: 25px;
+        margin-top: 20px;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    /* HEADER */
+    .header-incidencias {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+    .header-incidencias h2 {
+        margin: 0;
+        font-size: 20px;
+    }
+
+    .header-incidencias p {
+        margin: 0;
+        font-size: 13px;
+        color: #aaa;
+    }
+
+    /* FILTROS */
+    .filtros {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 15px;
+    }
+
+    .filtro {
+        background: rgba(255, 255, 255, 0.08);
+        padding: 6px 14px;
+        border-radius: 20px;
+        font-size: 13px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .filtro:hover {
+        background: linear-gradient(135deg, #7c3aed, #06b6d4);
+    }
+
+    /* TABLA */
+    .tabla-incidencias table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    /* ENCABEZADOS */
+    th {
+        text-align: left;
+        padding: 12px 15px;
+        font-size: 13px;
+        color: #aaa;
+    }
+
+    /* CELDAS (CLAVE PARA QUE NO SE VEAN CORRIDAS) */
+    td {
+        padding: 14px 15px;
+        vertical-align: middle;
+        color: white;
+    }
+
+    /* USUARIO (ARREGLA DESALINEACIÓN) */
+    .usuario {
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* FILA HOVER */
+    .table-row {
+        transition: all 0.3s ease;
+    }
+
+    .table-row:hover {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 10px;
+    }
+
+    /* TEXTO HOVER */
+    .table-text {
+        transition: all 0.3s ease;
+        cursor: pointer;
+    }
+
+    .table-text:hover {
+        color: #a78bfa;
+        transform: scale(1.02);
+    }
+
+    /* BADGE */
+    .badge {
+        background: rgba(255, 255, 255, 0.1);
+        padding: 5px 12px;
+        border-radius: 15px;
+        font-size: 12px;
+    }
+
+    /* ESTADOS */
+    .status {
+        padding: 5px 12px;
+        border-radius: 15px;
+        font-size: 12px;
+    }
+
+    .status.pending {
+        background: #f59e0b;
+        color: white;
+    }
+
+    /* ACCIONES */
+    .actions {
+        display: flex;
+        gap: 8px;
+    }
+
+    /* BOTONES */
+    .btn-action {
+        background: rgba(255, 255, 255, 0.1);
+        border: none;
+        padding: 6px 10px;
+        border-radius: 10px;
+        color: white;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .btn-action:hover {
+        background: linear-gradient(135deg, #7c3aed, #06b6d4);
+    }
+
+    .btn-action.delete:hover {
+        background: linear-gradient(135deg, #ef4444, #f97316);
+    }
+
+    /* EMPTY */
+    .empty {
+        text-align: center;
+        margin-top: 30px;
+        opacity: 0.6;
+    }
+
+    /* BOTÓN PRINCIPAL (igual empresas) */
+    .btn-primary {
+        background: linear-gradient(135deg, #7b2ff7, #00c6ff);
+        color: white;
+        border: none;
+        padding: 10px 18px;
+        border-radius: 25px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .btn-primary:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 12px rgba(123, 47, 247, 0.6);
+    }
+
+    button {
+        padding: 4px;
+        border-radius: 5px;
+    }
+
+    .header-incidencias .btn-new {
+        padding: 10px 18px !important;
+        border-radius: 25px !important;
+        background: linear-gradient(135deg, #7b2ff7, #00c6ff) !important;
+        color: white !important;
+        border: none !important;
+    }
+</style>
+
+<script>
+    function openIncidenciaModal() {
+        document.getElementById("modalIncidencia").style.display = "flex";
+    }
+
+    function closeIncidenciaModal() {
+        document.getElementById("modalIncidencia").style.display = "none";
+    }
+
+    /* cerrar haciendo click fuera */
+    window.onclick = function (event) {
+        const modal = document.getElementById("modalIncidencia");
+        if (event.target === modal) {
+            modal.style.display = "none";
+        }
+    }
 </script>

@@ -21,10 +21,12 @@
     }
 
     .panel {
-        margin-top: 30px;
-        background: rgba(255, 255, 255, 0.1);
-        padding: 20px;
-        border-radius: 15px;
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(12px);
+        border-radius: 18px;
+        padding: 25px;
+        margin-top: 20px;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
     }
 
     .grid {
@@ -171,20 +173,52 @@
         background: rgba(0, 0, 0, 0.6);
         justify-content: center;
         align-items: center;
-        z-index: 999;
+        z-index: 1000;
     }
 
     .modal-content {
-        background: rgba(30, 35, 60, 0.6);
-        backdrop-filter: blur(20px);
-        padding: 30px;
-        border-radius: 20px;
-        width: 420px;
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(12px);
+        padding: 25px;
+        border-radius: 18px;
+        width: 400px;
         color: white;
-        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-
     }
+
+    .modal-content input {
+        width: 100%;
+        padding: 10px;
+        margin-top: 10px;
+        border-radius: 10px;
+        border: none;
+        background: rgba(255, 255, 255, 0.08);
+        color: white;
+    }
+
+    /* GRID */
+    .grid-2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+
+    /* BOTONES MODAL */
+    .modal-buttons {
+        display: flex;
+        justify-content: flex-end;
+        gap: 10px;
+        margin-top: 15px;
+    }
+
+    .btn-cancel {
+        background: #444;
+        border: none;
+        padding: 8px 14px;
+        border-radius: 10px;
+        color: white;
+    }
+
+    
 
     .modal-content input,
     .modal-content select {
@@ -522,18 +556,6 @@
     .btn-stock:hover {
         background: linear-gradient(135deg, #7b2ff7, #00c6ff);
         transform: scale(1.05);
-    }
-
-    .status.pending {
-        background: orange;
-    }
-
-    .status.process {
-        background: #3498db;
-    }
-
-    .status.done {
-        background: #2ecc71;
     }
 </style>
 

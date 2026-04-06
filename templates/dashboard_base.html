@@ -4,9 +4,11 @@
 
 <style>
     .cards {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 20px;
+        display: grid !important;
+        grid-template-columns: repeat(4, 1fr) !important;
+        gap: 10px !important;
+        margin-top: 10px;
+
     }
 
     .card {
@@ -24,15 +26,14 @@
         background: rgba(255, 255, 255, 0.05);
         backdrop-filter: blur(12px);
         border-radius: 18px;
-        padding: 25px;
+        padding: 30px 35px;
         margin-top: 20px;
         box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
     }
 
     .grid {
         display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 20px;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     }
 
     .box {
@@ -41,25 +42,31 @@
         background: rgba(255, 255, 255, 0.1);
     }
 
-    .success {
-        background: rgba(0, 255, 150, 0.2);
-    }
-
-    .danger {
-        background: rgba(255, 80, 80, 0.2);
-    }
-
     .charts {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 20px;
-        margin-top: 30px;
+        gap: 25px;
+        margin-top: 25px;
     }
 
     .chart-box {
-        background: rgba(255, 255, 255, 0.1);
-        padding: 20px;
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.1);
         border-radius: 15px;
+        padding: 20px;
+        backdrop-filter: blur(10px);
+    }
+
+    .chart-box h4 {
+        margin-bottom: 15px;
+        font-size: 15px;
+        font-weight: 600;
+    }
+
+    .chart-box canvas {
+        max-width: 250px;
+        max-height: 250px;
+        margin: auto;
     }
 
     .kpi {
@@ -86,12 +93,7 @@
         color: white;
     }
 
-    .topbar {
-        display: flex;
-        justify-content: space-between;
-        padding: 20px 40px;
-        background: linear-gradient(90deg, #3b3f9c, #7b2ff7);
-    }
+
 
     .menu {
         display: flex;
@@ -114,57 +116,92 @@
         padding: 30px;
     }
 
+    /* 🔥 HEADER PRO */
     .topbar {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 15px 40px;
+        padding: 18px 40px;
         background: linear-gradient(90deg, #3b3f9c, #7b2ff7, #00c6ff);
-        border-radius: 10px;
+        border-radius: 12px;
     }
 
+    /* IZQUIERDA */
     .left {
         display: flex;
         align-items: center;
-        gap: 10px;
+        gap: 12px;
     }
 
+    /* ICONO (el emoji 🚚) */
+    .left::before {
+        content: "🚚";
+        background: rgba(255, 255, 255, 0.15);
+        padding: 10px;
+        border-radius: 12px;
+        font-size: 16px;
+    }
+
+    /* TEXTO */
+    .left div {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    /* TITULO */
     .left strong {
-        font-size: 18px;
+        font-size: 16px;
+        font-weight: 600;
+        line-height: 1.2;
     }
 
+    /* SUBTITULO */
     .left small {
+        font-size: 12px;
         opacity: 0.7;
     }
 
+    /* DERECHA */
     .right {
         display: flex;
         align-items: center;
-        gap: 20px;
+        gap: 15px;
     }
 
+    /* USUARIO */
     .user-info {
-        text-align: right;
-        font-size: 14px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        font-size: 13px;
+        line-height: 1.2;
     }
 
-    .user-info small {
-        opacity: 0.7;
+    /* 🔥 FORM (CLAVE) */
+    .right form {
+        margin: 0;
+        display: flex;
+        align-items: center;
     }
 
+    /* BOTÓN PRO */
     .btn-logout {
-        padding: 8px 15px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        padding: 6px 14px;
         border-radius: 20px;
         background: rgba(255, 255, 255, 0.15);
-        color: white;
-        text-decoration: none;
-        font-size: 14px;
-        transition: 0.3s;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        font-size: 13px;
     }
 
+    /* HOVER */
     .btn-logout:hover {
         background: linear-gradient(135deg, #7b2ff7, #00c6ff);
     }
+
 
     .modal {
         display: none;
@@ -201,24 +238,6 @@
         grid-template-columns: 1fr 1fr;
         gap: 10px;
     }
-
-    /* BOTONES MODAL */
-    .modal-buttons {
-        display: flex;
-        justify-content: flex-end;
-        gap: 10px;
-        margin-top: 15px;
-    }
-
-    .btn-cancel {
-        background: #444;
-        border: none;
-        padding: 8px 14px;
-        border-radius: 10px;
-        color: white;
-    }
-
-    
 
     .modal-content input,
     .modal-content select {
@@ -284,7 +303,6 @@
         cursor: pointer;
     }
 
-
     /* TABLA PRO */
 
     .table-pro th {
@@ -297,8 +315,6 @@
         padding: 16px 12px;
         border-top: 1px solid rgba(255, 255, 255, 0.08);
     }
-
-
 
     /* STATUS */
     .status {
@@ -332,8 +348,6 @@
     }
 
     /* CONTENEDOR TABLA */
-
-
 
     .table-container {
         background: rgba(255, 255, 255, 0.05);
@@ -557,15 +571,223 @@
         background: linear-gradient(135deg, #7b2ff7, #00c6ff);
         transform: scale(1.05);
     }
+
+    /* HEADER */
+    .box-header {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 10px;
+    }
+
+    .box-header h4 {
+        margin: 0;
+        font-size: 16px;
+    }
+
+    /* ICONO */
+    .icon {
+        background: rgba(255, 255, 255, 0.2);
+        padding: 8px;
+        border-radius: 50%;
+    }
+
+    /* LABEL */
+    .label {
+        font-size: 12px;
+        color: #cbd5f5;
+    }
+
+    /* PRODUCTO */
+    .product {
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    /* DIVISOR */
+    .divider {
+        height: 1px;
+        background: rgba(255, 255, 255, 0.1);
+        margin: 10px 0;
+    }
+
+    /* MINI CARDS */
+    .stats-mini {
+        display: flex;
+        gap: 10px;
+    }
+
+    .mini-card {
+        flex: 1;
+        background: rgba(255, 255, 255, 0.08);
+        padding: 10px;
+        border-radius: 10px;
+    }
+
+    .mini-card small {
+        font-size: 11px;
+        color: #cbd5f5;
+    }
+
+    .mini-card h3 {
+        margin: 5px 0;
+    }
+
+    .mini-card span {
+        font-size: 11px;
+        color: #9ca3af;
+    }
+
+    .box:hover {
+        transform: scale(1.02);
+        transition: 0.3s;
+    }
+
+    .report-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 30px;
+        padding: 15px 20px;
+        border-radius: 15px;
+        background: rgba(255, 255, 255, 0.08);
+    }
+
+    .report-header h3 {
+        margin: 0;
+    }
+
+    .report-header p {
+        margin: 0;
+        font-size: 13px;
+        opacity: 0.7;
+    }
+
+    .btn-export {
+        background: rgba(255, 255, 255, 0.15);
+        border: none;
+        padding: 10px 15px;
+        border-radius: 20px;
+        color: white;
+        cursor: pointer;
+    }
+
+    .btn-export:hover {
+        background: linear-gradient(135deg, #7b2ff7, #00c6ff);
+    }
+
+    /* MENOS VENDIDO */
+    .box.danger {
+        background: rgba(255, 80, 80, 0.2);
+        border: 1px solid rgba(255, 80, 80, 0.4);
+    }
+
+
+    .grid-ventas {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+    }
+
+    @media (max-width: 768px) {
+        .grid-ventas {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    /* 🎯 BASE CARD */
+    .cards .box {
+        padding: 12px;
+        border-radius: 14px;
+        min-height: 110px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        transition: 0.3s;
+        backdrop-filter: blur(10px);
+    }
+
+    /* 🟢 VERDE */
+    .box.success {
+        background: linear-gradient(135deg, rgba(0, 255, 150, 0.25), rgba(0, 255, 150, 0.1));
+        border: 1px solid rgba(0, 255, 150, 0.4);
+    }
+
+    /* 🔴 ROJO */
+    .box.danger {
+        background: linear-gradient(135deg, rgba(255, 80, 80, 0.25), rgba(255, 80, 80, 0.1));
+        border: 1px solid rgba(255, 80, 80, 0.4);
+    }
+
+    /* 🔵 AZUL */
+    .box.info {
+        background: linear-gradient(135deg, rgba(0, 150, 255, 0.25), rgba(0, 150, 255, 0.1));
+        border: 1px solid rgba(0, 150, 255, 0.4);
+    }
+
+    /* 🟣 MORADO */
+    .box.purple {
+        background: linear-gradient(135deg, rgba(160, 90, 255, 0.25), rgba(160, 90, 255, 0.1));
+        border: 1px solid rgba(160, 90, 255, 0.4);
+    }
+
+    .icon {
+        padding: 6px;
+        border-radius: 50%;
+        font-size: 12px;
+    }
+
+    @media (max-width: 768px) {
+        .cards {
+            grid-template-columns: 1fr 1fr;
+            /* 2 columnas */
+        }
+    }
+
+    @media (max-width: 768px) {
+        .charts {
+            grid-template-columns: 1fr;
+            /* una debajo de otra */
+        }
+    }
+
+    @media (max-width: 768px) {
+        .table-container {
+            overflow-x: auto;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .topbar {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .right {
+            width: 100%;
+            justify-content: space-between;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .menu {
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .menu a {
+            padding: 8px 12px;
+            font-size: 13px;
+        }
+    }
 </style>
 
 <div class="topbar">
 
     <div class="left">
-        🚚 <div>
-            <strong>Smart Delivery</strong><br>
-            <small>Panel de Administrador</small>
-        </div>
+        <h2>Smart Delivery</h2>
+
     </div>
 
     <div class="right">

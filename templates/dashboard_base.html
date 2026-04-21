@@ -22,13 +22,13 @@
         font-weight: bold;
     }
 
-    .panel {
-        background: rgba(255, 255, 255, 0.05);
-        backdrop-filter: blur(12px);
-        border-radius: 18px;
-        padding: 30px 35px;
-        margin-top: 20px;
-        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+   
+    
+    .card-conductores {
+        background: rgba(255, 255, 255, 0.08);
+        backdrop-filter: blur(15px);
+        border-radius: 20px;
+        border: 1px solid rgba(255, 255, 255, 0.15);
     }
 
     .grid {
@@ -88,9 +88,26 @@
     }
 
     body {
+        background: radial-gradient(circle at 20% 20%, #7b2ff7, transparent 40%),
+            radial-gradient(circle at 80% 30%, #00c6ff, transparent 40%),
+            radial-gradient(circle at 50% 80%, #5f9cff, transparent 50%),
+            #0f172a;
+
         min-height: 100vh;
-        background: linear-gradient(135deg, #1e3c72, #2a5298, #3b82f6);
         color: white;
+    }
+
+    .glass {
+        background: rgba(255, 255, 255, 0.08);
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+
+        border-radius: 20px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+
+        box-shadow:
+            0 8px 32px rgba(0, 0, 0, 0.2),
+            inset 0 0 10px rgba(255, 255, 255, 0.1);
     }
 
 
@@ -178,7 +195,7 @@
         line-height: 1.2;
     }
 
-    /* 🔥 FORM (CLAVE) */
+
     .right form {
         margin: 0;
         display: flex;
@@ -238,6 +255,7 @@
         grid-template-columns: 1fr 1fr;
         gap: 10px;
     }
+    
 
     .modal-content input,
     .modal-content select {
@@ -272,30 +290,65 @@
         cursor: pointer;
     }
 
-    .btn-create {
-        padding: 10px 18px;
-        border-radius: 20px;
-        border: none;
-        background: linear-gradient(135deg, #7b2ff7, #00c6ff);
-        color: white;
-        cursor: pointer;
-    }
-
+    .btn-create,
+    .btn-logout,
     .btn-danger {
         background: linear-gradient(135deg, #7b2ff7, #00c6ff);
-        color: white;
+        border: none;
         border-radius: 25px;
         padding: 10px 18px;
-        border: none;
-        cursor: pointer;
-        font-weight: 500;
+        color: white;
+
+        box-shadow: 0 4px 20px rgba(123, 47, 247, 0.5);
         transition: 0.3s;
     }
+
+    .btn-create:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 20px rgba(123, 47, 247, 0.8);
+    }
+
+    input {
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 12px;
+        padding: 10px;
+        color: white;
+    }
+
+    input::placeholder {
+        color: rgba(255, 255, 255, 0.6);
+    }
+
 
     /* 🔥 EFECTO HOVER (MUY IMPORTANTE) */
     .btn-danger:hover {
         transform: scale(1.05);
         opacity: 0.9;
+    }
+
+    input {
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 12px;
+        padding: 10px;
+        color: white;
+    }
+
+    input::placeholder {
+        color: rgba(255, 255, 255, 0.6);
+    }
+
+    .box.success {
+        background: linear-gradient(135deg, rgba(0, 255, 150, 0.3), rgba(0, 255, 150, 0.1));
+    }
+
+    .box.info {
+        background: linear-gradient(135deg, rgba(0, 150, 255, 0.3), rgba(0, 150, 255, 0.1));
+    }
+
+    .box.purple {
+        background: linear-gradient(135deg, rgba(160, 90, 255, 0.3), rgba(160, 90, 255, 0.1));
     }
 
     .close {
@@ -696,7 +749,17 @@
     }
 
     /* 🎯 BASE CARD */
-    .cards .box {
+
+    .cards {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+        /* 🔥 espacio entre tarjetas */
+        margin-bottom: 25px;
+        /* 🔥 separación abajo */
+    }
+
+    .box {
         padding: 12px;
         border-radius: 14px;
         min-height: 110px;

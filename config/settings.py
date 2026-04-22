@@ -1,23 +1,20 @@
 from pathlib import Path
 import os
-from dotenv import load_dotenv
-
-load_dotenv()
 
 # Base
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# Seguridad
-SECRET_KEY = os.getenv("SECRET_KEY", "django-insecure-dev-key")
-DEBUG = os.getenv("DEBUG", "True") == "True"
-ALLOWED_HOSTS = ["*"]
+# 🔐 Configuración local simple
+SECRET_KEY = 'django-insecure-clave-local'
+DEBUG = True
+ALLOWED_HOSTS = []
 
 # Static
 STATIC_URL = 'static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Apps
 INSTALLED_APPS = [

@@ -89,20 +89,45 @@ def empresas(request):
     return render(request, 'empresas/empresas_content.html', {
         'empresas': empresas
     })
-
+    
+@csrf_exempt
+def eliminar_empresa(request, id):
+    if request.method == "POST":
+        Company.objects.filter(id=id).delete()
+        return JsonResponse({'success': True})
+    
+# Usuarios
 @login_required
 def usuarios(request):
+
+    if request.method == "POST":
+        nombre = request.POST.get("nombre")
+        email = request.POST.get("email")
+        password = request.POST.get("password")
+        phone = request.POST.get("phone")
+        role = request.POST.get("role")
+
+        print(nombre, email, role)  # 👈 DEBUG (muy importante)
+
+        User.objects.create_user(
+            username=nombre,
+            email=email,
+            password=password,
+            phone=phone,
+            role=role
+        )
+
+        return redirect('usuarios')
+
     users = User.objects.all()
 
     return render(request, 'usuarios/usuarios_content.html', {
         'users': users
     })
 
-@csrf_exempt
-def eliminar_empresa(request, id):
-    if request.method == "POST":
-        Company.objects.filter(id=id).delete()
-        return JsonResponse({'success': True})
+
+
+
 
 
 @login_required

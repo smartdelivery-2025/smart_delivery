@@ -11,7 +11,7 @@
         </button>
     </div>
 
-    
+    <div class="table-container">
         <table class="table-pro">
             <thead>
                 <tr class="table-row">
@@ -57,6 +57,7 @@
             </tbody>
         </table>
     </div>
+</div>
 
 </div>
 
@@ -119,6 +120,16 @@
 </div>
 
 <style>
+    .table-container {
+        overflow-x: auto;
+    }
+
+    .table-pro {
+        width: 100%;
+        min-width: 1000px;
+        border-collapse: collapse;
+    }
+
     .card-conductores {
         background: rgba(255, 255, 255, 0.05);
         backdrop-filter: blur(12px);
@@ -247,6 +258,20 @@
     .btn-create:hover {
         transform: scale(1.05);
         box-shadow: 0 0 12px rgba(123, 47, 247, 0.6);
+    }
+
+    @media (max-width:768px) {
+
+        .panel-header {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .btn-danger {
+            width: 100%;
+        }
+
     }
 </style>
 

@@ -1,15 +1,18 @@
 {% extends "base.html" %}
-
+{% load static %}
 {% block title %}Login{% endblock %}
 {% block body_class %}auth-body{% endblock %}
 
 {% block content %}
 <div class="auth-card">
 
-    <div class="logo-icon">🚚</div>
+    <div class="logo-icon">
+        <img src="{% static 'img/logo-smart-delivery.png' %}" alt="Smart Delivery">
+    </div>
 
-    <h1>Smart Delivery</h1>
-    <div class="subtitle">Inicia sesión para continuar</div>
+    <div class="subtitle">
+        Inicia sesión para continuar
+    </div>
 
     <form method="POST">
         {% csrf_token %}

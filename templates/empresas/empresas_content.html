@@ -14,9 +14,9 @@
 
     <!-- ✅ TABLA ADENTRO -->
     <div class="tabla-empresas">
-        <table>
+        <table class="table-empresas">
             <thead>
-                 <tr class="table-row">
+                <tr class="table-row">
                     <th>Nombre</th>
                     <th>Código</th>
                     <th>Fecha de Creación</th>
@@ -31,16 +31,21 @@
                     <td><span class="badge">{{ empresa.code }}</span></td>
                     <td>{{ empresa.created_at }}</td>
                     <td>
-                        <button class="btn-action">📋 Copiar código</button>
-                        <button class="btn-action">🗑 Eliminar</button>
+                        <button class="btn-action">
+                            <i class="fas fa-copy"></i>
+                        </button>
+
+                        <button class="btn-action">
+                            <i class="fas fa-trash"></i>
+                        </button>
                     </td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
     </div>
-    </div>
-    
+</div>
+
 
 <div id="modalEmpresa" class="modal">
     <div class="modal-content">
@@ -57,7 +62,7 @@
         <div class="codigo-box">
             <input type="text" id="codigoEmpresa" placeholder="Ej: TRAMES001">
             <button class="btn-generate" onclick="generarCodigo()">Generar</button>
-            
+
         </div>
 
         <small class="info-text">
@@ -74,6 +79,16 @@
 
 
 <style>
+    .tabla-empresas {
+        overflow-x: auto;
+    }
+
+    .table-empresas {
+        width: 100%;
+        min-width: 700px;
+        border-collapse: collapse;
+    }
+
     .card-container {
         background: rgba(255, 255, 255, 0.05);
         /* transparencia */
@@ -194,7 +209,7 @@
         box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
     }
 
-    
+
 
     .table-row {
         transition: all 0.3s ease;
@@ -221,6 +236,24 @@
         padding: 14px 15px;
         color: white;
         vertical-align: middle;
+    }
+
+    @media (max-width:768px) {
+
+        .header-empresas {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .btn-new {
+            width: 100%;
+        }
+
+        .table-empresas {
+            min-width: 700px;
+        }
+
     }
 </style>
 

@@ -1,112 +1,294 @@
-<div class="panel">
-    <div style="display:flex; justify-content:space-between; align-items:center;">
-        <div>
-            <h3>Gestión de Pedidos</h3>
-            <small>Administra todos los pedidos del sistema</small>
-        </div>
 
-        <button onclick="openPedidoModal()" style="
-            padding:10px 20px;
-            border:none;
-            border-radius:20px;
-            background: linear-gradient(135deg, #7b2ff7, #00c6ff);
-            color:white;
-            cursor:pointer;
-        ">
-            + Nuevo Pedido
+<div class="tabla-pedidos">
+
+
+
+    <!-- FILTROS -->
+    <div class="filters">
+
+        <button class="filter-btn active" onclick="filterPedidos('ALL', this)">
+            Todos
         </button>
+
+        <button class="filter-btn" onclick="filterPedidos('PENDIENTE', this)">
+            Pendientes
+        </button>
+
+        <button class="filter-btn" onclick="filterPedidos('EN_RUTA', this)">
+            En Ruta
+        </button>
+
+        <button class="filter-btn" onclick="filterPedidos('ENTREGADO', this)">
+            Entregados
+        </button>
+
     </div>
 
-    <div style="text-align:center; margin-top:40px; opacity:0.7;">
-        📦 No hay pedidos registrados
-    </div>
+    <!-- TABLA -->
+    <table>
+        <thead>
+            <tr>
+                <th>Pedido</th>
+                <th>Destinatario</th>
+                <th>Estado</th>
+                <th>Conductor</th>
+                <th>Peso</th>
+                <th>Fecha</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            <tr class="pedido-row" data-status="PENDIENTE">
+                <td>#001</td>
+                <td>Juan Pérez</td>
+
+                <td>
+                    <span class="status pending">
+                        Pendiente
+                    </span>
+                </td>
+
+                <td>Sin asignar</td>
+
+                <td>2 Kg</td>
+
+                <td>02/06/2026</td>
+
+                <td>
+                    <button class="btn-action edit-btn">
+                        <i class="fas fa-pen"></i>
+                    </button>
+                </td>
+            </tr>
+
+            <tr class="pedido-row" data-status="EN_RUTA">
+                <td>#002</td>
+                <td>María Gómez</td>
+
+                <td>
+                    <span class="status route">
+                        En Ruta
+                    </span>
+                </td>
+
+                <td>Carlos López</td>
+
+                <td>5 Kg</td>
+
+                <td>02/06/2026</td>
+
+                <td>
+                    <button class="btn-action edit-btn">
+                        <i class="fas fa-pen"></i>
+                    </button>
+                </td>
+            </tr>
+
+            <tr class="pedido-row" data-status="ENTREGADO">
+                <td>#003</td>
+                <td>Carlos Rodríguez</td>
+
+                <td>
+                    <span class="status delivered">
+                        Entregado
+                    </span>
+                </td>
+
+                <td>Andrés Gómez</td>
+
+                <td>8 Kg</td>
+
+                <td>01/06/2026</td>
+
+                <td>
+                    <button class="btn-action edit-btn">
+                        <i class="fas fa-pen"></i>
+                    </button>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+
 </div>
-
-<!-- MODAL PEDIDO -->
-<div id="pedidoModal" class="modal">
-    <div class="modal-content" style="width:400px;">
-        <span class="close" onclick="closePedidoModal()">&times;</span>
-
-        <h3>Crear Nuevo Pedido</h3>
-
-        <input type="text" placeholder="Nombre destinatario">
-        <input type="text" placeholder="Teléfono">
-        <input type="text" placeholder="Dirección recogida">
-        <input type="text" placeholder="Dirección entrega">
-        <input type="text" placeholder="Descripción">
-        <input type="number" placeholder="Peso (kg)">
-
-        <div class="modal-buttons">
-            <button onclick="closePedidoModal()" class="btn-cancel">
-                Cancelar
-            </button>
-
-            <button class="btn-create">
-                Crear Pedido
-            </button>
-        </div>
-    </div>
-</div>
-
 
 <style>
-    .modal-content input {
-        width: 100%;
-        padding: 10px;
-        margin-top: 10px;
-        border-radius: 10px;
-        border: none;
-        background: rgba(255, 255, 255, 0.08);
-        color: white;
+    .tabla-pedidos tbody tr {
+        transition: .3s;
     }
 
-    /* CONTENEDOR */
-    .modal-buttons {
+    .tabla-pedidos tbody tr:hover {
+        background: rgba(255, 255, 255, .05);
+    }
+
+    .btn-action {
+        margin: auto;
+    }
+
+    .tabla-pedidos {
+        margin-top: 30px;
+        overflow-x: auto;
+    }
+
+    .filters {
         display: flex;
-        justify-content: flex-end;
         gap: 10px;
-        margin-top: 20px;
+        margin-bottom: 20px;
+        flex-wrap: wrap;
     }
 
-    /* CANCELAR */
-    .btn-cancel {
-        background: rgba(255, 255, 255, 0.1);
-        border: none;
+    .filter-btn {
         padding: 10px 18px;
-        border-radius: 25px;
-        color: white;
+        border: none;
+        border-radius: 20px;
         cursor: pointer;
-        transition: 0.3s;
+        color: white;
+        background: rgba(255, 255, 255, .08);
+        transition: .3s;
     }
 
-    .btn-cancel:hover {
-        background: rgba(255, 255, 255, 0.2);
+    .filter-btn:hover {
+        background: rgba(255, 255, 255, .15);
     }
 
-    /* CREAR */
-    .btn-create {
+    .filter-btn.active {
         background: linear-gradient(135deg, #7b2ff7, #00c6ff);
-        border: none;
-        padding: 10px 18px;
-        border-radius: 25px;
-        color: white;
-        font-weight: bold;
-        cursor: pointer;
-        transition: 0.3s;
     }
 
-    .btn-create:hover {
-        transform: scale(1.05);
-        box-shadow: 0 0 12px rgba(123, 47, 247, 0.6);
+    .tabla-pedidos table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .tabla-pedidos th,
+    .tabla-pedidos td {
+        padding: 15px;
+        text-align: center;
+        vertical-align: middle;
+    }
+
+    .tabla-pedidos th {
+        font-weight: 600;
+    }
+
+    .tabla-pedidos tbody tr {
+        transition: .3s;
+    }
+
+    .tabla-pedidos tbody tr:hover {
+        background: rgba(255, 255, 255, .05);
+    }
+
+    .status {
+        padding: 6px 14px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: 600;
+        color: white;
+    }
+
+    .pending {
+        background: #f59e0b;
+    }
+
+    .route {
+        background: #3b82f6;
+    }
+
+    .delivered {
+        background: #22c55e;
+    }
+
+    .btn-action {
+        width: 40px;
+        height: 40px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        border-radius: 12px;
+
+        background: rgba(255, 255, 255, .08);
+        border: 1px solid rgba(255, 255, 255, .12);
+
+        color: white;
+
+        cursor: pointer;
+        transition: .3s;
+    }
+
+    .btn-action:hover {
+        transform: translateY(-2px);
+        background: rgba(255, 255, 255, .15);
+    }
+
+    .edit-btn i {
+        color: #60a5fa;
+    }
+
+    /* RESPONSIVE */
+
+    @media (max-width:768px) {
+
+        .tabla-pedidos table {
+            min-width: 700px;
+        }
+
+        .filters {
+            overflow-x: auto;
+            flex-wrap: nowrap;
+        }
+
+        .filter-btn {
+            white-space: nowrap;
+        }
+
+        .filter-btn.active {
+            background: linear-gradient(135deg,
+                    #7b2ff7,
+                    #00c6ff);
+        }
+    }
+
+    @media (max-width:768px) {
+
+        .tabla-pedidos table {
+            min-width: 750px;
+        }
+
+        .filters {
+            overflow-x: auto;
+            flex-wrap: nowrap;
+        }
     }
 </style>
 
 <script>
-    function openPedidoModal() {
-        document.getElementById('pedidoModal').style.display = 'flex';
-    }
+    function filterPedidos(status, button) {
 
-    function closePedidoModal() {
-        document.getElementById('pedidoModal').style.display = 'none';
+        const rows = document.querySelectorAll('.pedido-row');
+
+        rows.forEach(row => {
+
+            if (status === 'ALL') {
+                row.style.display = '';
+                return;
+            }
+
+            if (row.dataset.status === status) {
+                row.style.display = '';
+            } else {
+                row.style.display = 'none';
+            }
+
+        });
+
+        document.querySelectorAll('.filter-btn')
+            .forEach(btn => btn.classList.remove('active'));
+
+        button.classList.add('active');
     }
 </script>

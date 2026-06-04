@@ -1,5 +1,5 @@
 <!-- 🔹 CARDS SUPERIORES -->
-<div class="cards">
+<div class="cards-dashboard">
     <div class="card">
         <h4>Total Pedidos</h4>
         <p class="number">7</p>
@@ -28,66 +28,66 @@
 <!-- 🔹 MÁS / MENOS VENDIDO -->
 
 
-    <div class="grid-ventas">
-        <div class="box success">
+<div class="grid-ventas">
+    <div class="box success">
 
-            <div class="box-header">
-                <span class="icon">📈</span>
-                <h4>Producto más Vendido</h4>
-            </div>
-
-            <small class="label">Producto</small>
-            <p class="product">Envío Express Nacional</p>
-
-            <div class="divider"></div>
-
-            <div class="stats-mini">
-                <div class="mini-card">
-                    <small>Cantidad</small>
-                    <h3>1</h3>
-                    <span>unidades vendidas</span>
-                </div>
-
-                <div class="mini-card">
-                    <small>Ingresos</small>
-                    <h3>$150</h3>
-                    <span>en ventas</span>
-                </div>
-            </div>
+        <div class="box-header">
+            <span class="icon">📈</span>
+            <h4>Producto más Vendido</h4>
         </div>
 
-        <div class="box danger">
+        <small class="label">Producto</small>
+        <p class="product">Envío Express Nacional</p>
 
-            <div class="box-header">
-                <span class="icon">📉</span>
-                <h4> Prducto Menos Vendido</h4>
+        <div class="divider"></div>
+
+        <div class="stats-mini">
+            <div class="mini-card">
+                <small>Cantidad</small>
+                <h3>1</h3>
+                <span>unidades vendidas</span>
             </div>
 
-            <small class="label">Producto</small>
-            <p class="product">Envío Express Nacional</p>
+            <div class="mini-card">
+                <small>Ingresos</small>
+                <h3>$150</h3>
+                <span>en ventas</span>
+            </div>
+        </div>
+    </div>
 
-            <div class="divider"></div>
+    <div class="box danger">
 
-            <div class="stats-mini">
+        <div class="box-header">
+            <span class="icon">📉</span>
+            <h4> Prducto Menos Vendido</h4>
+        </div>
 
-                <div class="mini-card">
-                    <small>Cantidad</small>
-                    <h3>1</h3>
-                    <span>unidades vendidas</span>
-                </div>
+        <small class="label">Producto</small>
+        <p class="product">Envío Express Nacional</p>
 
-                <div class="mini-card">
-                    <small>Ingresos</small>
-                    <h3>$150</h3>
-                    <span>en ventas</span>
-                </div>
+        <div class="divider"></div>
 
+        <div class="stats-mini">
+
+            <div class="mini-card">
+                <small>Cantidad</small>
+                <h3>1</h3>
+                <span>unidades vendidas</span>
+            </div>
+
+            <div class="mini-card">
+                <small>Ingresos</small>
+                <h3>$150</h3>
+                <span>en ventas</span>
             </div>
 
         </div>
 
     </div>
+
 </div>
+
 
 
 
@@ -119,7 +119,7 @@
         <h4>Eficiencia de Rutas</h4>
 
         <div class="chart-wrapper">
-        <canvas id="lineChart"></canvas>
+            <canvas id="lineChart"></canvas>
         </div>
     </div>
 
@@ -138,9 +138,9 @@
 <!-- 🔹 FIRMAS -->
 <div class="panel">
 
-   
+
     <!-- CARDS FIRMAS -->
-    <div class="cards">
+    <div class="cards-firmas">
 
         <div class="box success">
             <div class="box-header">
@@ -215,6 +215,30 @@
                         <button class="action-btn delete">⬇</button>
                     </td>
                 </tr>
+
+                <div class="mobile-nav">
+
+                    <a href="#">
+                        <i class="fas fa-home"></i>
+                    </a>
+
+                    <a href="#">
+                        <i class="fas fa-truck"></i>
+                    </a>
+
+                    <a href="#">
+                        <i class="fas fa-box"></i>
+                    </a>
+
+                    <a href="#">
+                        <i class="fas fa-chart-line"></i>
+                    </a>
+
+                    <a href="#">
+                        <i class="fas fa-user"></i>
+                    </a>
+
+                </div>
             </tbody>
         </table>
     </div>
@@ -313,5 +337,5 @@
         }
     });
 
-    maintainAspectRatio: false
+
 </script>

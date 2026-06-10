@@ -4,25 +4,23 @@ import os
 # Base
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# 🔐 Configuración local simple
-SECRET_KEY = 'django-insecure-clave-local'
-DEBUG = True
+
+# Quick-start development settings - unsuitable for production
+# See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
+
+
+SECRET_KEY = os.getenv("SECRET_KEY")
+
+
+
+
 ALLOWED_HOSTS = ['*']
 
-# Static
-STATIC_URL = 'static/'
-STATICFILES_DIRS = [
-    BASE_DIR / "static",
-]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 
-CSRF_TRUSTED_ORIGINS = [
-    "https://*.ngrok-free.dev"
-]
+# Application definition
 
-
-# Apps
 INSTALLED_APPS = [
     'companies',
     'users',
@@ -80,5 +78,4 @@ AUTH_USER_MODEL = 'users.User'
 LOGIN_REDIRECT_URL = '/panel/'
 LOGOUT_REDIRECT_URL = '/'
 
-# Django default
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
